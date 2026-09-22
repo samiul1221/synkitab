@@ -177,8 +177,15 @@ footer a:hover{color:var(--text)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 
 /* responsive */
+/* A grid item will not shrink below its content by default, so one wide child
+   -- the app window in the hero -- stretched the whole column past a phone's
+   screen, and overflow-x on body cut the headline and buttons off at the
+   right. minmax(0,1fr) and min-width:0 let every column fit its screen. */
+.hero-grid>*,.about-grid>*,.dl>*{min-width:0}
+.window{max-width:100%}
+.eyebrow{max-width:100%}
 @media (max-width:980px){
-  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .hero-grid,.about-grid{grid-template-columns:minmax(0,1fr)}
   .hero{padding-top:64px}
   .window{transform:none;animation:none}
   .chip.b{left:6px}.chip.a{right:6px}
