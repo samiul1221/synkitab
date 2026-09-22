@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SynKitab: your library, typeset and synced</title>
+<meta name="description" content="Read PDFs and EPUBs on Windows, Android and the web. Your place, highlights and notes follow you to every device.">
+<meta name="theme-color" content="#0b0b0d">
+<meta property="og:title" content="SynKitab">
+<meta property="og:description" content="Your library, typeset and synced. Windows, Android and the web.">
+<meta property="og:image" content="logo.png">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0d; --bg2:#111114; --card:#16161a; --card2:#1c1c21;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --text:#ededeb; --muted:#a8a8a3; --faint:#6f6f6a;
+  --accent:#5b9bd9; --brand:#1357e0; --paper:#faf8f3; --ink:#1a1a18;
+  --r:18px; --maxw:1180px;
+  --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+::selection{background:var(--accent);color:#0b0b0d}
+
+/* ---------------------------------------------------------------- nav */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);background:rgba(11,11,13,.72);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:28px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;font-size:18px}
+.brand img{width:30px;height:30px;border-radius:8px}
+.links{display:flex;gap:26px;margin-left:auto;font-size:14.5px;color:var(--muted)}
+.links a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;font-weight:600;font-size:15px;padding:12px 22px;transition:transform .15s ease,background .2s ease,box-shadow .2s ease,border-color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-primary{background:linear-gradient(180deg,#2d6ff0,var(--brand));color:#fff;box-shadow:0 8px 30px -8px rgba(19,87,224,.7),inset 0 1px 0 rgba(255,255,255,.18)}
+.btn-primary:hover{box-shadow:0 12px 40px -8px rgba(19,87,224,.9),inset 0 1px 0 rgba(255,255,255,.22)}
+.btn-ghost{border:1px solid var(--line2);color:var(--text);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.06)}
+.btn-sm{padding:8px 16px;font-size:14px}
+
+/* ---------------------------------------------------------------- hero */
+.hero{position:relative;padding:92px 0 40px;overflow:hidden}
+.glow{position:absolute;inset:-20% -10% auto;height:760px;pointer-events:none;
+  background:radial-gradient(600px 340px at 72% 30%,rgba(19,87,224,.35),transparent 70%),
+             radial-gradient(520px 300px at 18% 10%,rgba(91,155,217,.16),transparent 70%)}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);border:1px solid var(--line2);border-radius:999px;padding:6px 12px 6px 8px;background:rgba(255,255,255,.03)}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 4px rgba(61,220,132,.15)}
+h1{text-wrap:balance;font-family:var(--serif);font-weight:400;font-size:clamp(44px,6.2vw,84px);line-height:1.02;letter-spacing:-.025em;margin:22px 0 22px}
+h1 em{font-style:italic;background:linear-gradient(100deg,#9cc4ff 0%,var(--accent) 45%,#2d6ff0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:clamp(17px,1.6vw,19.5px);color:var(--muted);max-width:34ch}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.meta{margin-top:18px;font-size:13px;color:var(--faint)}
+.meta a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------------------------------------------------------- app mockup */
+.stage{position:relative;perspective:1600px}
+.window{position:relative;border-radius:14px;background:#121214;border:1px solid var(--line2);
+  box-shadow:0 50px 120px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4),0 30px 80px -40px rgba(19,87,224,.55);
+  transform:rotateY(-9deg) rotateX(4deg);transform-origin:left center;overflow:hidden;animation:float 9s ease-in-out infinite}
+@keyframes float{0%,100%{transform:rotateY(-9deg) rotateX(4deg) translateY(0)}50%{transform:rotateY(-7deg) rotateX(3deg) translateY(-8px)}}
+.titlebar{display:flex;align-items:center;gap:8px;height:30px;padding:0 12px;background:#1a1a1d;font-size:11.5px;color:var(--muted)}
+.titlebar img{width:14px;height:14px;border-radius:3px}
+.titlebar .ctl{margin-left:auto;display:flex;gap:14px;color:var(--faint);letter-spacing:6px}
+.tabs{display:flex;align-items:center;gap:6px;padding:7px 10px;background:#0e0e10;border-bottom:1px solid var(--line)}
+.tabs .home{width:26px;height:26px;display:grid;place-items:center;color:var(--muted)}
+.tab{display:flex;align-items:center;gap:7px;height:28px;padding:0 10px;min-width:0;width:150px;border-radius:7px;background:#262629;border:1px solid rgba(255,255,255,.07);font-size:11.5px;color:var(--muted);white-space:nowrap}
+.tab span{overflow:hidden;text-overflow:ellipsis;flex:1}
+.tab.on{position:relative;background:#232b3a;border-color:rgba(91,155,217,.45);color:var(--text);font-weight:600}
+.tab.on::after{content:"";position:absolute;left:10px;right:10px;bottom:0;height:2px;border-radius:1px;background:var(--accent)}
+.tab i{font-style:normal;opacity:.6}
+.tabs .plus{color:var(--muted);font-size:16px;padding:0 6px}
+.view{position:relative;display:grid;grid-template-columns:1fr 150px;height:392px;background:#0a0a0b}
+.page-wrap{position:relative;overflow:hidden;display:flex;justify-content:center;padding-top:22px}
+.page{width:74%;background:var(--paper);color:var(--ink);border-radius:3px;padding:26px 26px 0;height:600px;
+  box-shadow:0 10px 40px rgba(0,0,0,.5);animation:scroll 14s linear infinite}
+@keyframes scroll{0%{transform:translateY(0)}100%{transform:translateY(-230px)}}
+.page h4{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.15;margin-bottom:6px}
+.page .by{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#8a877e;margin-bottom:14px}
+.l{height:6px;border-radius:3px;background:#d9d5ca;margin:8px 0}
+.l.s{width:62%}.l.m{width:84%}
+.hl{background:linear-gradient(90deg,rgba(255,214,90,.75),rgba(255,214,90,.55));height:8px;border-radius:2px;margin:8px 0;width:78%}
+.anchor{position:absolute;left:46%;top:52%;width:30px;height:30px;border-radius:50%;background:rgba(250,248,243,.9);border:1px solid rgba(0,0,0,.2);display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.anchor::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(91,155,217,.6);animation:ping 2.2s ease-out infinite}
+@keyframes ping{0%{transform:scale(.7);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.anchor svg{width:16px;height:16px;color:#333}
+.marks{border-left:1px solid var(--line);background:#141417;padding:14px 12px;font-size:11px}
+.marks b{display:block;font-size:12px;margin-bottom:10px}
+.mark{border-radius:8px;background:#1c1c20;border:1px solid var(--line);padding:8px;margin-bottom:8px;color:var(--muted);line-height:1.35}
+.mark .sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.chip{position:absolute;display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;padding:9px 13px;border-radius:12px;background:rgba(22,22,26,.92);border:1px solid var(--line2);box-shadow:0 18px 40px -12px rgba(0,0,0,.8);backdrop-filter:blur(8px)}
+.chip.a{right:96px;top:-22px;animation:bob 6s ease-in-out infinite}
+.chip.b{left:-26px;bottom:14%;animation:bob 7s ease-in-out infinite reverse}
+.chip .g{width:8px;height:8px;border-radius:50%;background:#3ddc84}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* ---------------------------------------------------------- platforms */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+.strip .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 46px;padding:22px 24px;color:var(--muted);font-size:14px}
+.strip span{display:flex;align-items:center;gap:9px}
+.strip svg{width:18px;height:18px;opacity:.8}
+
+/* ---------------------------------------------------------- sections */
+section{padding:110px 0;scroll-margin-top:64px}
+.kicker{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h2{text-wrap:balance;font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,56px);line-height:1.06;letter-spacing:-.02em;margin:14px 0 16px;max-width:18ch}
+.sub{color:var(--muted);font-size:18px;max-width:56ch}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:54px}
+.cell{position:relative;overflow:hidden;border-radius:var(--r);background:linear-gradient(180deg,var(--card),#121215);border:1px solid var(--line);padding:28px;transition:border-color .25s,transform .25s}
+.cell:hover{border-color:var(--line2);transform:translateY(-2px)}
+.cell h3{font-size:19px;font-weight:600;letter-spacing:-.01em;margin:14px 0 8px}
+.cell p{color:var(--muted);font-size:15px}
+.ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(91,155,217,.1);border:1px solid rgba(91,155,217,.25);color:var(--accent)}
+.ic svg{width:21px;height:21px}
+.c4{grid-column:span 4}.c2{grid-column:span 2}.c3{grid-column:span 3}
+.cell.feature{min-height:260px;background:radial-gradient(500px 220px at 90% 0%,rgba(19,87,224,.22),transparent 70%),linear-gradient(180deg,var(--card),#121215)}
+.devices{position:absolute;right:26px;bottom:-12px;display:flex;align-items:flex-end;gap:10px}
+.dv{border:1px solid var(--line2);background:#0f0f12;border-radius:10px;box-shadow:0 20px 40px -20px #000}
+.dv.pc{width:200px;height:120px}.dv.ph{width:56px;height:104px;border-radius:12px}
+.dv .pg{margin:10px auto 0;width:60%;height:78%;background:var(--paper);border-radius:2px;opacity:.9}
+.dv.ph .pg{width:74%;height:80%;margin-top:8px}
+.dv .bar{height:3px;margin:6px 10px 0;border-radius:2px;background:linear-gradient(90deg,var(--accent) 62%,rgba(255,255,255,.1) 62%)}
+
+/* downloads */
+#download{background:radial-gradient(900px 400px at 50% 0%,rgba(19,87,224,.14),transparent 70%)}
+.dl{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px}
+.card{position:relative;border-radius:22px;padding:30px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px;transition:border-color .25s,box-shadow .25s,transform .25s}
+.card:hover{transform:translateY(-3px);border-color:var(--line2)}
+.card.you{border-color:rgba(91,155,217,.55);box-shadow:0 0 0 1px rgba(91,155,217,.25),0 30px 70px -30px rgba(19,87,224,.6)}
+.card .badge{position:absolute;top:18px;right:18px;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#0b0b0d;background:var(--accent);padding:4px 10px;border-radius:999px;display:none}
+.card.you .badge{display:block}
+.card .os{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--card2);border:1px solid var(--line2)}
+.card .os svg{width:24px;height:24px}
+.card h3{font-size:22px;font-weight:600;letter-spacing:-.01em}
+.card p{color:var(--muted);font-size:14.5px;flex:1}
+.card ul{list-style:none;color:var(--faint);font-size:13px;display:grid;gap:4px}
+.card ul li::before{content:"·";margin-right:8px;color:var(--accent)}
+.card .btn{justify-content:center}
+.fine{margin-top:26px;text-align:center;color:var(--faint);font-size:13.5px}
+.fine a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+
+/* about */
+#about{background:var(--paper);color:var(--ink)}
+#about .kicker{color:var(--brand)}
+#about .sub{color:#5a5a55}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:start}
+.quote{font-family:var(--serif);font-size:clamp(24px,2.6vw,32px);line-height:1.3;letter-spacing:-.01em;margin-top:30px}
+.facts{display:grid;gap:14px;margin-top:8px}
+.fact{border-radius:16px;background:#fff;border:1px solid #e7e4dc;padding:20px 22px}
+.fact b{display:block;font-size:15.5px;margin-bottom:4px}
+.fact span{color:#5a5a55;font-size:14.5px}
+
+/* final cta */
+.final{text-align:center;padding:120px 0}
+.final h2{margin-left:auto;margin-right:auto}
+.final .ctas{justify-content:center}
+
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--faint);font-size:13.5px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center}
+footer .sp{margin-left:auto;display:flex;gap:22px}
+footer a:hover{color:var(--text)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+/* responsive */
+@media (max-width:980px){
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .hero{padding-top:64px}
+  .window{transform:none;animation:none}
+  .chip.b{left:6px}.chip.a{right:6px}
+  .dl{grid-template-columns:1fr}
+  .c4,.c2,.c3{grid-column:span 6}
+  .links{display:none}
+  .view{grid-template-columns:1fr}.marks{display:none}
+}
+@media (max-width:520px){
+  .wrap{padding:0 16px}
+  section{padding:80px 0}
+  .ctas .btn{width:100%;justify-content:center}
+  .devices{display:none}
+  .tab{width:110px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="win" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.5 10.5 4.4v7.1H3V5.5Zm8.5-1.3L21 3v8.5h-9.5V4.2ZM3 12.5h7.5v7.1L3 18.5v-6Zm8.5 0H21V21l-9.5-1.3v-7.2Z"/></symbol>
+  <symbol id="droid" viewBox="0 0 24 24"><path fill="currentColor" d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.87 3.23A11.4 11.4 0 0 0 12 8.2c-1.77 0-3.43.37-4.91.95L5.22 5.92a.38.38 0 0 0-.66.38l1.84 3.18A10.6 10.6 0 0 0 1 18h22a10.6 10.6 0 0 0-5.4-8.52ZM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Z"/></symbol>
+  <symbol id="globe" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm-9-9h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></symbol>
+  <symbol id="dl" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></symbol>
+  <symbol id="arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="logo.png" alt="">SynKitab</a>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="#about">About</a>
+    </div>
+    <a class="btn btn-ghost btn-sm" href="app/">Open web reader</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div><div class="grain"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow rv"><span class="dot"></span><span data-rel="headline">Now on Windows, Android and the web</span></span>
+      <h1 class="rv">Every book you own.<br><em>One library,</em> every device.</h1>
+      <p class="lede rv">Read PDFs and EPUBs anywhere. Close the book on your phone and open it on your PC at the same line, with every highlight and note still there.</p>
+      <div class="ctas rv">
+        <a class="btn btn-primary" id="hero-cta" href="#download"><svg><use href="#dl"/></svg><span>Download SynKitab</span></a>
+        <a class="btn btn-ghost" href="app/"><svg><use href="#globe"/></svg>Read in the browser</a>
+      </div>
+      <p class="meta rv">Free. No ads in your books. <a href="#download">All downloads</a></p>
+    </div>
+
+    <div class="stage rv" aria-hidden="true">
+      <div class="window">
+        <div class="titlebar"><img src="logo.png" alt="">SynKitab<span class="ctl">&#8212; &#9633; &#10005;</span></div>
+        <div class="tabs">
+          <span class="home"><svg width="15" height="15" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg></span>
+          <div class="tab"><i>&#9636;</i><span>Meditations</span><i>&#10005;</i></div>
+          <div class="tab on"><i style="color:var(--accent);opacity:1">&#9636;</i><span>The Art of Reading</span><i>&#10005;</i></div>
+          <div class="tab"><i>&#9636;</i><span>Systems Design</span><i>&#10005;</i></div>
+          <span class="plus">+</span>
+        </div>
+        <div class="view">
+          <div class="page-wrap">
+            <div class="page">
+              <div class="by">Chapter three</div>
+              <h4>On reading slowly, and then all at once</h4>
+              <div class="l"></div><div class="l m"></div><div class="l"></div><div class="l s"></div>
+              <div class="hl"></div><div class="l m"></div><div class="l"></div>
+              <div class="l"></div><div class="l s"></div><div class="l m"></div><div class="l"></div>
+              <div class="hl" style="width:56%"></div><div class="l"></div><div class="l m"></div>
+              <div class="l"></div><div class="l s"></div><div class="l"></div><div class="l m"></div>
+              <div class="l"></div><div class="l"></div><div class="l s"></div><div class="l m"></div>
+              <div class="l"></div><div class="l"></div><div class="l m"></div><div class="l s"></div>
+            </div>
+            <div class="anchor"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 3v18M3 12h18M12 3l-3 3m3-3 3 3m-3 15-3-3m3 3 3-3M3 12l3-3m-3 3 3 3m15-3-3-3m3 3-3 3"/></svg></div>
+          </div>
+          <div class="marks">
+            <b>Marks · 3</b>
+            <div class="mark"><span class="sw" style="background:#ffd65a"></span>"Read the good books first…"</div>
+            <div class="mark"><span class="sw" style="background:#7fd1a8"></span>Note: compare with ch. 1</div>
+            <div class="mark"><span class="sw" style="background:#9cc4ff"></span>Bookmark · page 48</div>
+          </div>
+        </div>
+      </div>
+      <div class="chip a"><span class="g"></span>Synced to your phone, page 48</div>
+      <div class="chip b">&#10024; Picked up where you left off</div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap">
+    <span><svg><use href="#win"/></svg>Windows 10 &amp; 11</span>
+    <span><svg><use href="#droid"/></svg>Android 7 and up</span>
+    <span><svg><use href="#globe"/></svg>Any modern browser</span>
+    <span>PDF · EPUB · CBZ · Notion</span>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="kicker rv">What it does</div>
+    <h2 class="rv">A reader that remembers everything.</h2>
+    <p class="sub rv">Built for people with a few hundred PDFs and a phone, a laptop, and a browser tab they keep losing books between.</p>
+
+    <div class="bento">
+      <div class="cell feature c4 rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"/></svg></div>
+        <h3>Your place follows you</h3>
+        <p style="max-width:34ch">Reading position, highlights, notes and bookmarks sync across devices. Offline, it keeps them on the device and sends them when you're back online.</p>
+        <div class="devices"><div class="dv pc"><div class="bar"></div><div class="pg"></div></div><div class="dv ph"><div class="bar"></div><div class="pg"></div></div></div>
+      </div>
+      <div class="cell c2 rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M3 6h7l2 2h9v11H3z"/></svg></div>
+        <h3>Tabs, like a browser</h3>
+        <p>Keep several books open and switch instantly. "Open with" from Explorer drops a book into a new tab.</p>
+      </div>
+      <div class="cell c2 rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 4h10l4 4v12H5zM14 4v5h5M8 13h8M8 17h5"/></svg></div>
+        <h3>PDF and real EPUB</h3>
+        <p>EPUBs reflow as ebooks, with chapters and adjustable type. They aren't flattened into PDFs.</p>
+      </div>
+      <div class="cell c2 rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 4h16v16H4zM4 9h16M9 9v11"/></svg></div>
+        <h3>Notion to book</h3>
+        <p>Paste a Notion link and get a typeset PDF, subpages and all. Import it again later to pull in your latest edits.</p>
+      </div>
+      <div class="cell c2 rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 20h4L19 9l-4-4L4 16zM13 7l4 4"/></svg></div>
+        <h3>Edit Arena</h3>
+        <p>Reorder, rotate, crop, merge and split pages. Every edit is a new version, so you can always go back.</p>
+      </div>
+      <div class="cell c3 rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm6.5-6a3 3 0 0 1 0 6M3 20c.7-3 3.2-5 6-5s5.3 2 6 5m1.5-4.8c2.2.4 3.9 2.1 4.5 4.8"/></svg></div>
+        <h3>Friends and shared shelves</h3>
+        <p>Send a book to a friend, see what they're reading, and keep private shelves private.</p>
+      </div>
+      <div class="cell c3 rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 3a9 9 0 1 0 9 9c-5 1-10-4-9-9z"/></svg></div>
+        <h3>Seven reading themes</h3>
+        <p>Paper, Sepia, Ink, Midnight and more. Page tints for night reading, focus mode, middle-click autoscroll and find in the toolbar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="wrap">
+    <div class="kicker rv" style="text-align:center">Download</div>
+    <h2 class="rv" style="margin-left:auto;margin-right:auto;text-align:center">Get SynKitab on every screen you read on.</h2>
+    <p class="sub rv" style="margin:0 auto;text-align:center">Sign in once and your library is waiting in all three.</p>
+
+    <div class="dl">
+      <div class="card rv" data-os="windows">
+        <span class="badge">For this device</span>
+        <div class="os"><svg style="color:#4ea8ff"><use href="#win"/></svg></div>
+        <h3>Windows</h3>
+        <p>Installs once, no admin needed. Adds a Start-menu entry and "Open with SynKitab" for PDFs and EPUBs.</p>
+        <ul><li>Windows 10 or 11, 64-bit</li><li data-rel="setup-size">One small installer</li><li>Uninstall from Settings → Apps</li></ul>
+        <a class="btn btn-primary" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe"><svg><use href="#dl"/></svg>Download for Windows</a>
+      </div>
+      <div class="card rv" data-os="android">
+        <span class="badge">For this device</span>
+        <div class="os"><svg style="color:#3ddc84"><use href="#droid"/></svg></div>
+        <h3>Android</h3>
+        <p>Download the APK and open it. Android will ask you to allow installs from your browser the first time.</p>
+        <ul><li>Android 7.0 or newer</li><li data-rel="apk-size">A single APK</li><li>Opens PDFs and EPUBs from any app</li></ul>
+        <a class="btn btn-primary" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab.apk"><svg><use href="#dl"/></svg>Download the APK</a>
+      </div>
+      <div class="card rv" data-os="web">
+        <span class="badge">For this device</span>
+        <div class="os"><svg style="color:var(--accent)"><use href="#globe"/></svg></div>
+        <h3>Web</h3>
+        <p>No install. The same library in any modern browser, on a borrowed computer or at work.</p>
+        <ul><li>Chrome, Edge, Firefox, Safari</li><li>Your synced cloud library</li><li>Works on phones too</li></ul>
+        <a class="btn btn-ghost" href="app/">Open the web reader <svg><use href="#arrow"/></svg></a>
+      </div>
+    </div>
+    <p class="fine rv"><span data-rel="line"></span><a href="https://github.com/samiul1221/synkitab/releases">All releases and changelog</a></p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="kicker rv">About</div>
+      <h2 class="rv">Made for reading, not for scrolling past.</h2>
+      <p class="sub rv">SynKitab started as a way to stop losing books between devices. It grew into a reader that typesets Notion pages, reflows EPUBs, lets you edit pages safely, and keeps your place across a phone, a PC and a browser.</p>
+      <p class="quote rv">"Kitab" is Arabic, Urdu and Hindi for <em>book</em>. The rest is sync.</p>
+    </div>
+    <div class="facts">
+      <div class="fact rv"><b>Your books stay yours</b><span>Files on your device stay on your device unless you choose to sync them. Each account can only see its own library.</span></div>
+      <div class="fact rv"><b>Your Notion token never leaves your device</b><span>It's sent with each conversion and never stored on the server.</span></div>
+      <div class="fact rv"><b>Delete everything, any time</b><span>Deleting your account in Settings removes your books, notes and history from the server.</span></div>
+      <div class="fact rv"><b>Works offline</b><span>Downloaded books open without a connection. Your place syncs when you're back online.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2 class="rv">Pick up where you left off.</h2>
+    <p class="sub rv" style="margin:0 auto">On whatever's in your hand.</p>
+    <div class="ctas rv">
+      <a class="btn btn-primary" id="final-cta" href="#download"><svg><use href="#dl"/></svg><span>Download SynKitab</span></a>
+      <a class="btn btn-ghost" href="app/">Open web reader</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" style="font-size:15px"><img src="logo.png" alt="" style="width:22px;height:22px">SynKitab</a>
+    <span>© <span id="yr">2026</span> SynKitab<span data-rel="footer"></span></span>
+    <div class="sp">
+      <a href="#download">Download</a><a href="#about">About</a><a href="app/">Web reader</a>
+      <a href="https://github.com/samiul1221/synkitab/releases">Releases</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Point the main button at the right download for this device, and mark
+// that card. Windows gets the installer, Android the APK, everything else
+// (Mac, Linux, iPhone) the web reader.
+(function () {
+  var ua = navigator.userAgent || "";
+  var os = /Android/i.test(ua) ? "android"
+         : /Windows/i.test(ua) ? "windows"
+         : "web";
+  var card = document.querySelector('.card[data-os="' + os + '"]');
+  if (card) card.classList.add("you");
+  var target = {
+    windows: ["https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe", "Download for Windows"],
+    android: ["https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab.apk", "Download for Android"],
+    web: ["app/", "Open the web reader"]
+  }[os];
+  ["hero-cta", "final-cta"].forEach(function (id) {
+    var a = document.getElementById(id);
+    if (!a) return;
+    a.href = target[0];
+    a.querySelector("span").textContent = target[1];
+  });
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // A glide, not a jump, to each section.
+  //
+  // CSS scroll-behavior is skipped in some setups -- Windows with its
+  // animation effects turned off makes browsers jump -- so the menu links
+  // scroll themselves: an ease-in-out over a duration that grows a little
+  // with the distance, stopping just under the sticky bar. Anyone who asked
+  // their system for reduced motion still gets the jump they asked for.
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function glide(to) {
+    var from = window.scrollY, dist = to - from;
+    if (still || Math.abs(dist) < 2) { window.scrollTo(0, to); return; }
+    var ms = Math.min(1100, 420 + Math.abs(dist) * 0.25), t0 = null;
+    function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    function step(now) {
+      if (t0 === null) t0 = now;
+      var t = Math.min(1, (now - t0) / ms);
+      window.scrollTo(0, from + dist * ease(t));
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  document.documentElement.style.scrollBehavior = "auto";
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var id = a.getAttribute("href");
+      var el = id === "#top" ? document.body : document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      var nav = document.querySelector("nav").offsetHeight;
+      var y = id === "#top" ? 0 : el.getBoundingClientRect().top + window.scrollY - nav;
+      glide(Math.max(0, y));
+      history.replaceState(null, "", id);
+    });
+  });
+
+  // What the latest release actually is, asked of GitHub on load, so the
+  // page is never behind the downloads it links to. If GitHub cannot be
+  // reached the defaults above already read as whole sentences.
+  function set(key, text) {
+    document.querySelectorAll('[data-rel="' + key + '"]').forEach(function (el) { el.textContent = text; });
+  }
+  function mb(asset) { return asset ? Math.max(1, Math.round(asset.size / 1048576)) + " MB" : null; }
+  fetch("https://api.github.com/repos/samiul1221/synkitab/releases/latest")
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (rel) {
+      var v = (rel.tag_name || "").replace(/^v/, "");
+      var when = rel.published_at ? new Date(rel.published_at).toLocaleDateString(undefined, { day: "numeric", month: "long", year: "numeric" }) : "";
+      var find = function (name) { return (rel.assets || []).filter(function (a) { return a.name === name; })[0]; };
+      var setup = mb(find("SynKitab-Setup.exe")), apk = mb(find("SynKitab.apk"));
+      if (v) set("headline", "Version " + v + " is out · Windows, Android and the web");
+      if (setup) set("setup-size", setup + " installer");
+      if (apk) set("apk-size", apk + " APK");
+      if (v) set("line", "Version " + v + (when ? " · released " + when : "") + " · ");
+      if (v) set("footer", " · v" + v);
+    })
+    .catch(function () {});
+
+  // Reveal on scroll.
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12 }) : null;
+  document.querySelectorAll(".rv").forEach(function (el, i) {
+    el.style.transitionDelay = Math.min(i % 6, 5) * 60 + "ms";
+    if (io) io.observe(el); else el.classList.add("in");
+  });
+})();
+</script>
+</body>
+</html>
