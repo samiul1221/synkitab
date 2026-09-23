@@ -150125,7 +150125,7 @@ B(a){var s,r,q=null,p=A.n(a).ax,o=A.n(a).ok.z
 if(o==null)s=q
 else{r=p.rx
 s=o.ak(r==null?p.k3:r)}o=t.p
-return A.bC0(q,q,new A.cH(B.fE,new A.aj(B.cD,A.bm(A.c([A.jr(A.c9(18),A.aGY("assets/logo.png",new A.b2n(),!1,72,q,72),B.au),B.b4,A.S("SynKitab",q,q,q,q,A.n(a).ok.f,q,q),B.cZ,A.S("Version 1.0.3",B.bf3,q,q,q,s,q,q),B.b4,A.S("Your library, typeset and synced. Read on Windows, Android and the web, and pick up where you left off on any of them.",q,q,q,q,s,B.aw,q),B.dN,new A.b3(1/0,q,A.bvy(B.a4p,B.bfh,B.b9X,new A.b2o(a)),q),B.am,A.cc(A.c([A.dp(A.bEo(B.a44,B.bg3,B.baW,new A.b2p(a)),1),B.bU,A.dp(A.bEo(B.a3S,B.bct,B.bb8,new A.b2q(a)),1)],o),B.r,B.m,B.F,0),B.am,A.e1(!1,B.baG,q,q,!0,q,q,new A.b2r(a),q,q)],o),B.r,B.m,B.P,0,q),q),q),q,q,q,q,B.beQ,B.b2o,q,q,q)}}
+return A.bC0(q,q,new A.cH(B.fE,new A.aj(B.cD,A.bm(A.c([A.jr(A.c9(18),A.aGY("assets/logo.png",new A.b2n(),!1,72,q,72),B.au),B.b4,A.S("SynKitab",q,q,q,q,A.n(a).ok.f,q,q),B.cZ,A.S("Version 1.0.4",B.bf3,q,q,q,s,q,q),B.b4,A.S("Your library, typeset and synced. Read on Windows, Android and the web, and pick up where you left off on any of them.",q,q,q,q,s,B.aw,q),B.dN,new A.b3(1/0,q,A.bvy(B.a4p,B.bfh,B.b9X,new A.b2o(a)),q),B.am,A.cc(A.c([A.dp(A.bEo(B.a44,B.bg3,B.baW,new A.b2p(a)),1),B.bU,A.dp(A.bEo(B.a3S,B.bct,B.bb8,new A.b2q(a)),1)],o),B.r,B.m,B.F,0),B.am,A.e1(!1,B.baG,q,q,!0,q,q,new A.b2r(a),q,q)],o),B.r,B.m,B.P,0,q),q),q),q,q,q,q,B.beQ,B.b2o,q,q,q)}}
 A.b2n.prototype={
 $3(a,b,c){return B.b4o},
 $S:198}
@@ -150139,7 +150139,7 @@ A.b2q.prototype={
 $0(){return A.a1t(this.a,"https://samiul1221.github.io/synkitab/app/")},
 $S:0}
 A.b2r.prototype={
-$0(){return A.caN("SynKitab","1.0.3",this.a)},
+$0(){return A.caN("SynKitab","1.0.4",this.a)},
 $S:0}
 A.a4T.prototype={
 bK(a,b){var s=null
@@ -165683,7 +165683,7 @@ B.baf=new A.bb("Delete your account?",null,null,null,null,null,null,null,null)
 B.bag=new A.bb("Open books in tabs",null,null,null,null,null,null,null,null)
 B.bah=new A.bb("Go",null,null,null,null,null,null,null,null)
 B.QW=new A.bb("Lock",null,null,null,null,null,null,null,null)
-B.bai=new A.bb("Version 1.0.3 \xb7 get it on your other devices",null,null,null,null,null,null,null,null)
+B.bai=new A.bb("Version 1.0.4 \xb7 get it on your other devices",null,null,null,null,null,null,null,null)
 B.baj=new A.bb("Go to home page",null,B.QQ,null,null,null,null,null,null)
 B.QX=new A.bb("Back",null,null,null,null,null,null,null,null)
 B.bak=new A.bb("Your profile",null,null,null,null,null,null,null,null)
