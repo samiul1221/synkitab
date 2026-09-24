@@ -535,7 +535,7 @@ footer a:hover{color:var(--text)}
         <div class="os"><svg style="color:#4ea8ff"><use href="#win"/></svg></div>
         <h3>Windows</h3>
         <p>Installs once, no admin needed. Adds a Start-menu entry and "Open with SynKitab" for 60+ file types.</p>
-        <ul><li>Windows 10 or 11, 64-bit</li><li data-rel="setup-size">One small installer</li><li>Uninstall from Settings → Apps</li></ul>
+        <ul><li>Windows 10 or 11, 64-bit</li><li data-rel="setup-size">One small installer</li><li>Opens PDFs and 60+ formats from Explorer</li></ul>
         <a class="btn btn-primary" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe"><svg><use href="#dl"/></svg>Download for Windows</a>
       </div>
       <div class="card rv" data-os="android">
@@ -607,7 +607,13 @@ footer a:hover{color:var(--text)}
 // (Mac, Linux, iPhone) the web reader.
 (function () {
   var ua = navigator.userAgent || "";
-  var os = /Android/i.test(ua) ? "android"
+  // An Android tablet's browser often asks for the desktop site and then
+  // says "Linux" rather than "Android". A Linux browser with a touchscreen
+  // is, in practice, an Android device.
+  var hints = navigator.userAgentData && navigator.userAgentData.platform;
+  var android = /Android/i.test(ua) || hints === "Android" ||
+    (/Linux/i.test(ua) && !/Windows|CrOS/i.test(ua) && navigator.maxTouchPoints > 1);
+  var os = android ? "android"
          : /Windows/i.test(ua) ? "windows"
          : "web";
   var card = document.querySelector('.card[data-os="' + os + '"]');
@@ -615,13 +621,15 @@ footer a:hover{color:var(--text)}
   var target = {
     windows: ["https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe", "Download for Windows"],
     android: ["https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab.apk", "Download for Android"],
-    web: ["app/", "Open the web reader"]
+    web: ["https://reader.synkitab.com/", "Open the web reader"]
   }[os];
   ["hero-cta", "final-cta"].forEach(function (id) {
     var a = document.getElementById(id);
     if (!a) return;
     a.href = target[0];
     a.querySelector("span").textContent = target[1];
+    // Opening the reader is not a download: the globe, not the arrow.
+    if (os === "web") a.querySelector("use").setAttribute("href", "#globe");
   });
   document.getElementById("yr").textContent = new Date().getFullYear();
 
