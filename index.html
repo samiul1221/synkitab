@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SynKitab: your library, typeset and synced</title>
-<meta name="description" content="Open PDFs, EPUBs, Word, Excel, CSV, code, images and comics on Windows, Android and the web. Every file opens as itself, instantly and offline. Your place, highlights and notes follow you to every device.">
+<meta name="description" content="Open PDFs, EPUBs, Word, Excel, CSV, code, images and comics on Windows, Android, Linux and the web. Every file opens as itself, instantly and offline. Your place, highlights and notes follow you to every device.">
 <meta name="theme-color" content="#0b0b0d">
 <meta property="og:title" content="SynKitab">
-<meta property="og:description" content="Your library, typeset and synced. Windows, Android and the web.">
+<meta property="og:description" content="Your library, typeset and synced. Windows, Android, Linux and the web.">
 <meta property="og:image" content="logo.png">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -134,7 +134,10 @@ h2{text-wrap:balance;font-family:var(--serif);font-weight:400;font-size:clamp(34
 
 /* downloads */
 #download{background:radial-gradient(900px 400px at 50% 0%,rgba(19,87,224,.14),transparent 70%)}
-.dl{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px}
+.dl{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px}
+/* Four cards need the full width; below it they pair up before stacking
+   (the 980px rule further down). */
+@media (max-width:1140px){.dl{grid-template-columns:repeat(2,1fr)}}
 .card{position:relative;border-radius:22px;padding:30px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px;transition:border-color .25s,box-shadow .25s,transform .25s}
 .card:hover{transform:translateY(-3px);border-color:var(--line2)}
 .card.you{border-color:rgba(91,155,217,.55);box-shadow:0 0 0 1px rgba(91,155,217,.25),0 30px 70px -30px rgba(19,87,224,.6)}
@@ -310,6 +313,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 <svg width="0" height="0" style="position:absolute">
   <symbol id="win" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.5 10.5 4.4v7.1H3V5.5Zm8.5-1.3L21 3v8.5h-9.5V4.2ZM3 12.5h7.5v7.1L3 18.5v-6Zm8.5 0H21V21l-9.5-1.3v-7.2Z"/></symbol>
   <symbol id="droid" viewBox="0 0 24 24"><path fill="currentColor" d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.87 3.23A11.4 11.4 0 0 0 12 8.2c-1.77 0-3.43.37-4.91.95L5.22 5.92a.38.38 0 0 0-.66.38l1.84 3.18A10.6 10.6 0 0 0 1 18h22a10.6 10.6 0 0 0-5.4-8.52ZM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Z"/></symbol>
+  <symbol id="linux" viewBox="0 0 24 24"><path fill="currentColor" d="M8.7 18.9c.3.9-.7 1.8-2 2.3-1 .4-1.6-.2-1.2-1 .3-.9 1-1.6 1.7-2 .7-.3 1.3-.1 1.5.7Zm6.6 0c-.3.9.7 1.8 2 2.3 1 .4 1.6-.2 1.2-1-.3-.9-1-1.6-1.7-2-.7-.3-1.3-.1-1.5.7Z"/><path fill="currentColor" fill-rule="evenodd" d="M12 1.5c-2.3 0-3.9 1.8-3.9 4.3v1.5c0 1-.4 1.8-1.2 2.8-1.6 1.9-2.5 3.7-2.5 5.5 0 2.8 2.4 4.9 7.6 4.9s7.6-2.1 7.6-4.9c0-1.8-.9-3.6-2.5-5.5-.8-1-1.2-1.8-1.2-2.8V5.8c0-2.5-1.6-4.3-3.9-4.3ZM9.95 5.6a.78 1.05 0 1 0 1.56 0 .78 1.05 0 1 0-1.56 0Zm2.54 0a.78 1.05 0 1 0 1.56 0 .78 1.05 0 1 0-1.56 0Z"/></symbol>
   <symbol id="globe" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm-9-9h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></symbol>
   <symbol id="dl" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></symbol>
   <symbol id="arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5"/></symbol>
@@ -333,7 +337,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
   <div class="glow"></div><div class="grain"></div>
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow rv"><span class="dot"></span><span data-rel="headline">Now on Windows, Android and the web</span></span>
+      <span class="eyebrow rv"><span class="dot"></span><span data-rel="headline">Now on Windows, Android, Linux and the web</span></span>
       <h1 class="rv">Every book you own.<br><em>One library,</em> every device.</h1>
       <p class="lede rv">PDFs, EPUBs, Word, Excel, code, comics and more, each opened as itself, instantly and offline. Close it on your phone and pick it up on your PC at the same line.</p>
       <div class="ctas rv">
@@ -571,7 +575,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
   <div class="wrap">
     <div class="kicker rv" style="text-align:center">Download</div>
     <h2 class="rv" style="margin-left:auto;margin-right:auto;text-align:center">Get SynKitab on every screen you read on.</h2>
-    <p class="sub rv" style="margin:0 auto;text-align:center">Sign in once and your library is waiting in all three.</p>
+    <p class="sub rv" style="margin:0 auto;text-align:center">Sign in once and your library is waiting in every one of them.</p>
 
     <div class="dl">
       <div class="card rv" data-os="windows">
@@ -589,6 +593,15 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         <p>Download the APK and open it. Android will ask you to allow installs from your browser the first time.</p>
         <ul><li>Android 7.0 or newer</li><li data-rel="apk-size">A single APK</li><li>Opens 60+ file types from any app</li></ul>
         <a class="btn btn-primary" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab.apk"><svg><use href="#dl"/></svg>Download the APK</a>
+      </div>
+      <div class="card rv" data-os="linux">
+        <span class="badge">For this device</span>
+        <div class="os"><svg style="color:#e9b949"><use href="#linux"/></svg></div>
+        <h3>Linux</h3>
+        <p>For Ubuntu and other Linux distros. Run the AppImage as it is, or install the .deb on Ubuntu or Debian.</p>
+        <ul><li data-rel="linux-min">64-bit, a recent distro (Ubuntu 25.10 or newer)</li><li data-rel="linux-size">One portable file</li><li>Opens PDFs and EPUBs from your file manager</li></ul>
+        <a class="btn btn-primary" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-x86_64.AppImage"><svg><use href="#dl"/></svg>Download the AppImage</a>
+        <a class="btn btn-ghost" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab_amd64.deb">Get the .deb instead <svg><use href="#arrow"/></svg></a>
       </div>
       <div class="card rv" data-os="web">
         <span class="badge">For this device</span>
@@ -651,34 +664,49 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 
 <script>
 // Point the main button at the right download for this device, and mark
-// that card. Windows gets the installer, Android the APK, everything else
-// (Mac, Linux, iPhone) the web reader.
+// that card. Windows gets the installer, Android the APK, Linux the
+// AppImage, everything else (Mac, iPhone) the web reader.
 (function () {
   var ua = navigator.userAgent || "";
   // An Android tablet's browser often asks for the desktop site and then
   // says "Linux" rather than "Android". A Linux browser with a touchscreen
-  // is, in practice, an Android device.
+  // is, in practice, an Android device -- unless it says outright that it is
+  // a Linux desktop, which is a real touchscreen laptop that now has a real
+  // download of its own. Only Chromium answers that; Firefox on such a
+  // laptop still gets the APK, and nothing in the user agent can tell.
   var hints = navigator.userAgentData && navigator.userAgentData.platform;
   var android = /Android/i.test(ua) || hints === "Android" ||
-    (/Linux/i.test(ua) && !/Windows|CrOS/i.test(ua) && navigator.maxTouchPoints > 1);
+    (hints !== "Linux" && /Linux/i.test(ua) && !/Windows|CrOS/i.test(ua) &&
+      navigator.maxTouchPoints > 1);
+  // A desktop Linux browser, which is what is left once Android is ruled
+  // out above: no touchscreen, and not a Chromebook, whose ChromeOS says
+  // "CrOS Linux" and cannot install a .deb.
+  var linux = !android && /Linux|X11/i.test(ua) && !/Windows|CrOS|Android/i.test(ua);
   var os = android ? "android"
          : /Windows/i.test(ua) ? "windows"
+         : linux ? "linux"
          : "web";
-  var card = document.querySelector('.card[data-os="' + os + '"]');
-  if (card) card.classList.add("you");
-  var target = {
+  var targets = {
     windows: ["https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe", "Download for Windows"],
     android: ["https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab.apk", "Download for Android"],
+    linux: ["https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-x86_64.AppImage", "Download for Linux"],
     web: ["https://reader.synkitab.com/", "Open the web reader"]
-  }[os];
-  ["hero-cta", "final-cta"].forEach(function (id) {
-    var a = document.getElementById(id);
-    if (!a) return;
-    a.href = target[0];
-    a.querySelector("span").textContent = target[1];
-    // Opening the reader is not a download: the globe, not the arrow.
-    if (os === "web") a.querySelector("use").setAttribute("href", "#globe");
-  });
+  };
+  function point(at) {
+    document.querySelectorAll(".card.you").forEach(function (c) { c.classList.remove("you"); });
+    var card = document.querySelector('.card[data-os="' + at + '"]');
+    if (card) card.classList.add("you");
+    var target = targets[at];
+    ["hero-cta", "final-cta"].forEach(function (id) {
+      var a = document.getElementById(id);
+      if (!a) return;
+      a.href = target[0];
+      a.querySelector("span").textContent = target[1];
+      // Opening the reader is not a download: the globe, not the arrow.
+      a.querySelector("use").setAttribute("href", at === "web" ? "#globe" : "#dl");
+    });
+  }
+  point(os);
   document.getElementById("yr").textContent = new Date().getFullYear();
 
   // A glide, not a jump, to each section.
@@ -730,9 +758,11 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
       var when = rel.published_at ? new Date(rel.published_at).toLocaleDateString(undefined, { day: "numeric", month: "long", year: "numeric" }) : "";
       var find = function (name) { return (rel.assets || []).filter(function (a) { return a.name === name; })[0]; };
       var setup = mb(find("SynKitab-Setup.exe")), apk = mb(find("SynKitab.apk"));
-      if (v) set("headline", "Version " + v + " is out · Windows, Android and the web");
+      var appimage = mb(find("SynKitab-x86_64.AppImage"));
+      if (v) set("headline", "Version " + v + " is out · Windows, Android, Linux and the web");
       if (setup) set("setup-size", setup + " installer");
       if (apk) set("apk-size", apk + " APK");
+      if (appimage) set("linux-size", appimage + " AppImage");
       if (v) set("line", "Version " + v + (when ? " · released " + when : "") + " · ");
       if (v) set("footer", " · v" + v);
     })
