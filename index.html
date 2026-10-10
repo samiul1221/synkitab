@@ -668,20 +668,22 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 // AppImage, everything else (Mac, iPhone) the web reader.
 (function () {
   var ua = navigator.userAgent || "";
-  // An Android tablet's browser often asks for the desktop site and then
-  // says "Linux" rather than "Android". A Linux browser with a touchscreen
-  // is, in practice, an Android device -- unless it says outright that it is
-  // a Linux desktop, which is a real touchscreen laptop that now has a real
-  // download of its own. Only Chromium answers that; Firefox on such a
-  // laptop still gets the APK, and nothing in the user agent can tell.
   var hints = navigator.userAgentData && navigator.userAgentData.platform;
+  // An Android tablet's browser asks for the desktop site by default, and
+  // then says "Linux" -- in its user agent and, in Chrome, in its client
+  // hints too. Neither can be believed. What a tablet cannot hide is how it
+  // is used: a finger is its main pointer, with nothing to hover. A Linux
+  // PC, even one with a touchscreen, has a mouse or a trackpad.
+  var linuxish = /Linux|X11/i.test(ua) && !/Windows|CrOS/i.test(ua);
+  var touchFirst = !!(window.matchMedia &&
+    window.matchMedia("(pointer: coarse) and (hover: none)").matches);
+  var arm = /arm|aarch/i.test(navigator.platform || "");
   var android = /Android/i.test(ua) || hints === "Android" ||
-    (hints !== "Linux" && /Linux/i.test(ua) && !/Windows|CrOS/i.test(ua) &&
-      navigator.maxTouchPoints > 1);
-  // A desktop Linux browser, which is what is left once Android is ruled
-  // out above: no touchscreen, and not a Chromebook, whose ChromeOS says
-  // "CrOS Linux" and cannot install a .deb.
-  var linux = !android && /Linux|X11/i.test(ua) && !/Windows|CrOS|Android/i.test(ua);
+    (linuxish && (touchFirst || (arm && navigator.maxTouchPoints > 0)));
+  // A Linux PC: what is left once Android is ruled out, and not a
+  // Chromebook ("CrOS"). The download is for 64-bit PCs, so an ARM board
+  // gets the web reader instead.
+  var linux = !android && linuxish && !arm;
   var os = android ? "android"
          : /Windows/i.test(ua) ? "windows"
          : linux ? "linux"
