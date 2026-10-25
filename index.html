@@ -150,6 +150,14 @@ h2{text-wrap:balance;font-family:var(--serif);font-weight:400;font-size:clamp(34
 .card ul{list-style:none;color:var(--faint);font-size:13px;display:grid;gap:4px}
 .card ul li::before{content:"·";margin-right:8px;color:var(--accent)}
 .card .btn{justify-content:center}
+/* The Linux card needs two more doors than the others -- the .deb, and the
+   per-distro commands that do not belong on a download card (/linux.html has
+   the room). They sit ABOVE the button on purpose: anything below it pushes
+   the blue button off the line the other three buttons sit on. */
+.card .alts{display:flex;align-items:center;justify-content:center;gap:9px;font-size:13px;color:var(--muted);flex:none;margin-top:auto}
+.card .alts a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line2);transition:color .2s}
+.card .alts a:hover{color:var(--accent)}
+.card .alts span{color:var(--faint)}
 .upgrade{font-size:13.5px;color:var(--muted);border-left:3px solid var(--accent);padding:4px 0 4px 10px;margin:10px 0}
 .fine{margin-top:26px;text-align:center;color:var(--faint);font-size:13.5px}
 .fine a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
@@ -344,7 +352,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         <a class="btn btn-primary" id="hero-cta" href="#download"><svg><use href="#dl"/></svg><span>Download SynKitab</span></a>
         <a class="btn btn-ghost" href="https://reader.synkitab.com/"><svg><use href="#globe"/></svg>Read in the browser</a>
       </div>
-      <p class="meta rv">Free. No ads in your books. <a href="#download">All downloads</a></p>
+      <p class="meta rv">Free. No ads in your books. <a href="#download">All downloads</a><span id="linux-help" hidden> · <a href="/linux.html">Installing on Linux</a></span></p>
     </div>
 
     <div class="stage rv" aria-hidden="true">
@@ -598,10 +606,10 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         <span class="badge">For this device</span>
         <div class="os"><svg style="color:#e9b949"><use href="#linux"/></svg></div>
         <h3>Linux</h3>
-        <p>For Ubuntu and other Linux distros. Run the AppImage as it is, or install the .deb on Ubuntu or Debian.</p>
-        <ul><li data-rel="linux-min">64-bit, a recent distro (Ubuntu 25.10 or newer)</li><li data-rel="linux-size">One portable file</li><li>Opens PDFs and EPUBs from your file manager</li></ul>
+        <p>Ubuntu, Arch and the rest. The AppImage runs on any 64-bit distro; the .deb installs properly on Ubuntu and Debian.</p>
+        <ul><li data-rel="linux-min">Ubuntu 24.04+, Debian 13, Fedora 39+, Arch</li><li data-rel="linux-size">One portable file</li><li>Opens PDFs and EPUBs from your file manager</li></ul>
+        <p class="alts"><a href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab_amd64.deb">Get the .deb</a> <span>·</span> <a href="/linux.html">How to install</a></p>
         <a class="btn btn-primary" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-x86_64.AppImage"><svg><use href="#dl"/></svg>Download the AppImage</a>
-        <a class="btn btn-ghost" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab_amd64.deb">Get the .deb instead <svg><use href="#arrow"/></svg></a>
       </div>
       <div class="card rv" data-os="web">
         <span class="badge">For this device</span>
@@ -698,6 +706,10 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
     document.querySelectorAll(".card.you").forEach(function (c) { c.classList.remove("you"); });
     var card = document.querySelector('.card[data-os="' + at + '"]');
     if (card) card.classList.add("you");
+    // Installing differs by distro, so a Linux visitor is offered the guide
+    // from the hero as well, not only from the card far down the page.
+    var help = document.getElementById("linux-help");
+    if (help) help.hidden = at !== "linux";
     var target = targets[at];
     ["hero-cta", "final-cta"].forEach(function (id) {
       var a = document.getElementById(id);

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SynKitab on Linux · installing</title>
+<meta name="description" content="Install SynKitab on Ubuntu, Debian, Arch, Fedora and other 64-bit Linux distributions. The .deb for Ubuntu and Debian, the AppImage for everything else.">
+<meta name="theme-color" content="#0b0b0d">
+<link rel="icon" href="/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0d; --card:#16161a; --card2:#1c1c21;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --text:#ededeb; --muted:#a8a8a3; --faint:#6f6f6a; --accent:#5b9bd9; --brand:#1357e0;
+  --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.glow{position:fixed;inset:-20% -10% auto;height:640px;pointer-events:none;
+  background:radial-gradient(520px 300px at 70% 30%,rgba(19,87,224,.32),transparent 70%),
+             radial-gradient(460px 260px at 20% 10%,rgba(91,155,217,.14),transparent 70%)}
+header{position:relative;border-bottom:1px solid var(--line)}
+header .wrap,main,footer .wrap{max-width:820px;margin:0 auto;padding:0 24px}
+header .wrap{height:64px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.01em}
+.brand img{width:30px;height:30px;border-radius:8px}
+header nav{margin-left:auto;font-size:14.5px;color:var(--muted)}
+header nav a:hover{color:var(--text)}
+main{position:relative;flex:1;width:100%;padding:56px 24px 72px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,6vw,54px);line-height:1.06;letter-spacing:-.025em;margin:0 0 18px;text-wrap:balance}
+.lede{color:var(--muted);font-size:clamp(16px,1.6vw,18px);max-width:54ch}
+h2{font-size:21px;font-weight:600;letter-spacing:-.01em;margin:46px 0 6px}
+h2 .tag{font-size:12.5px;font-weight:500;color:var(--muted);margin-left:10px;letter-spacing:0}
+p{color:var(--muted);font-size:15px;margin-top:10px;max-width:62ch}
+ol{margin:14px 0 0 20px;color:var(--muted);font-size:15px;display:grid;gap:10px}
+pre{margin-top:10px;padding:14px 16px;border-radius:12px;background:#0e0e11;border:1px solid var(--line);
+  overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.7;color:var(--text)}
+pre .c{color:var(--muted)}
+code.in{font-family:var(--mono);font-size:.9em;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1.5px 6px;color:var(--text)}
+.runs{margin-top:22px;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+.runs div{display:flex;justify-content:space-between;gap:16px;padding:11px 16px;font-size:14px;border-top:1px solid var(--line)}
+.runs div:first-child{border-top:0;background:var(--card2);color:var(--muted);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+.runs span:last-child{color:var(--muted);font-family:var(--mono);font-size:13px;white-space:nowrap}
+.note{margin-top:16px;border-left:2px solid var(--line2);padding:2px 0 2px 16px;color:var(--muted);font-size:14px}
+.note b{color:var(--text);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;font-weight:600;font-size:15px;padding:12px 22px;transition:transform .15s ease,background .2s ease,border-color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(180deg,#2d6ff0,var(--brand));color:#fff;box-shadow:0 8px 30px -8px rgba(19,87,224,.7)}
+.btn-ghost{border:1px solid var(--line2);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.06)}
+footer{position:relative;border-top:1px solid var(--line);padding:26px 0;color:var(--faint);font-size:13.5px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 22px}
+footer a:hover{color:var(--text)}
+@media (max-width:520px){
+  .actions{align-self:stretch}.btn{width:100%;justify-content:center}
+  .runs div{flex-direction:column;gap:2px}
+  .runs span:last-child{white-space:normal}
+}
+</style>
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/logo.png" alt="">SynKitab</a>
+    <nav><a href="/#download">All downloads</a></nav>
+  </div>
+</header>
+
+<main>
+  <h1>Installing SynKitab on Linux</h1>
+  <p class="lede">Two downloads, one app. The <b>.deb</b> installs properly on Ubuntu
+  and Debian. The <b>AppImage</b> is a single file that runs on any 64-bit
+  distribution — Arch, Fedora, openSUSE and the rest.</p>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-x86_64.AppImage">Download the AppImage</a>
+    <a class="btn btn-ghost" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab_amd64.deb">Download the .deb</a>
+  </div>
+
+  <h2>Ubuntu and Debian <span class="tag">the .deb</span></h2>
+  <p>This is the one to pick if you are on Ubuntu or Debian: it adds SynKitab
+  to your applications list and to "Open with" in your file manager.</p>
+  <pre><span class="c"># from wherever your browser saved it</span>
+sudo apt install ./SynKitab_amd64.deb</pre>
+  <p>The leading <code class="in">./</code> matters — without it apt looks for a
+  package called "SynKitab_amd64.deb" in its repositories. To remove it later,
+  run <code class="in">sudo&nbsp;apt&nbsp;remove&nbsp;synkitab</code>.</p>
+
+  <h2>Arch, Fedora, openSUSE and the rest <span class="tag">the AppImage</span></h2>
+  <p>One file, no installation. Your browser clears the executable bit when it
+  downloads, so it needs setting once:</p>
+  <pre>chmod +x SynKitab-x86_64.AppImage
+./SynKitab-x86_64.AppImage</pre>
+  <p>On Arch and Omarchy, AppImages need FUSE 2, which is not installed by
+  default:</p>
+  <pre>sudo pacman -S fuse2</pre>
+  <p>Or skip FUSE entirely and let the AppImage unpack itself each time:</p>
+  <pre>./SynKitab-x86_64.AppImage --appimage-extract-and-run</pre>
+
+  <h2>What it runs on</h2>
+  <div class="runs">
+    <div><span>Distribution</span><span>Needs glibc 2.38</span></div>
+    <div><span>Ubuntu 24.04 LTS and newer</span><span>yes</span></div>
+    <div><span>Ubuntu 22.04 LTS</span><span>no — glibc 2.35</span></div>
+    <div><span>Debian 13 (trixie)</span><span>yes</span></div>
+    <div><span>Debian 12 (bookworm)</span><span>no — glibc 2.36</span></div>
+    <div><span>Fedora 39 and newer</span><span>yes</span></div>
+    <div><span>Arch, Omarchy, Manjaro</span><span>yes</span></div>
+  </div>
+  <p>64-bit x86 only; there is no ARM build yet. Both downloads use your
+  system's GTK 3, so a desktop that already runs GTK applications has
+  everything it needs. On a very minimal install you may also want
+  <code class="in">libsecret</code>, which is what keeps you signed in.</p>
+
+  <h2>If something goes wrong</h2>
+  <p class="note"><b>Nothing happens when I run the AppImage.</b> Almost always
+  the missing executable bit or FUSE — the two commands above fix both. Run it
+  from a terminal to see the actual error.</p>
+  <p class="note"><b>It asks me to sign in every time.</b> SynKitab keeps your
+  session in the system keyring. Make sure a keyring service is running and
+  unlocked — GNOME Keyring on most desktops, KWallet on KDE. Minimal window
+  managers often start without one.</p>
+  <p class="note"><b>"Open with SynKitab" is missing.</b> The .deb registers
+  it; the AppImage does not, because it is not installed anywhere. Use the .deb
+  if you want SynKitab to be your default reader.</p>
+  <p class="note"><b>Read aloud and "send to another app" are not there.</b>
+  Correct — neither has a Linux implementation yet. "Save a copy" writes the
+  file wherever you point it.</p>
+
+  <div class="actions">
+    <a class="btn btn-ghost" href="/#download">Other downloads</a>
+    <a class="btn btn-ghost" href="https://github.com/samiul1221/synkitab/releases">Releases and changelog</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 SynKitab</span>
+    <a href="https://api.synkitab.com/privacy">Privacy policy</a>
+    <a href="https://api.synkitab.com/delete-account">Delete your account</a>
+    <a href="https://api.synkitab.com/report">Report a problem</a>
+  </div>
+</footer>
+</body>
+</html>
