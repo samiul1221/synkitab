@@ -10,9 +10,7 @@
 <meta property="og:description" content="Your library, typeset and synced. Windows, Android, Linux and the web.">
 <meta property="og:image" content="logo.png">
 <link rel="icon" href="logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 :root{
   --bg:#0b0b0d; --bg2:#111114; --card:#16161a; --card2:#1c1c21;
@@ -768,7 +766,9 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
     document.querySelectorAll('[data-rel="' + key + '"]').forEach(function (el) { el.textContent = text; });
   }
   function mb(asset) { return asset ? Math.max(1, Math.round(asset.size / 1048576)) + " MB" : null; }
-  fetch("https://api.github.com/repos/samiul1221/synkitab/releases/latest")
+  // Written beside the page by scripts/lib/publish.ps1, so no visitor's
+  // browser asks GitHub.
+  fetch("/release.json")
     .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
     .then(function (rel) {
       var v = (rel.tag_name || "").replace(/^v/, "");

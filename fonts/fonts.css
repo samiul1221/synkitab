@@ -1,0 +1,7 @@
+/* Served from this site rather than Google Fonts, which would see everyone
+   who opens a page. Latin subset; the three files are variable fonts, so one
+   covers every weight the pages use. Fraunces and Inter: SIL Open Font
+   License 1.1. */
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 600;font-display:swap;src:url(fraunces.woff2) format('woff2')}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:400;font-display:swap;src:url(fraunces-italic.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(inter.woff2) format('woff2')}
