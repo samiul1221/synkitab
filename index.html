@@ -350,7 +350,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         <a class="btn btn-primary" id="hero-cta" href="#download"><svg><use href="#dl"/></svg><span>Download SynKitab</span></a>
         <a class="btn btn-ghost" href="https://reader.synkitab.com/"><svg><use href="#globe"/></svg>Read in the browser</a>
       </div>
-      <p class="meta rv">Free. No ads in your books. <a href="#download">All downloads</a><span id="linux-help" hidden> · <a href="/linux.html">Installing on Linux</a></span></p>
+      <p class="meta rv">Free. No ads in your books. <a href="#download">All downloads</a><span id="linux-help" hidden> · <a href="/linux.html">Installing on Linux</a></span><span id="windows-direct" hidden> · <a href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe">Direct download (.exe)</a></span></p>
     </div>
 
     <div class="stage rv" aria-hidden="true">
@@ -711,6 +711,10 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
     // from the hero as well, not only from the card far down the page.
     var help = document.getElementById("linux-help");
     if (help) help.hidden = at !== "linux";
+    // The main button is the Store; the installer is one click away too,
+    // for a PC without the Store.
+    var direct = document.getElementById("windows-direct");
+    if (direct) direct.hidden = at !== "windows";
     var target = targets[at];
     ["hero-cta", "final-cta"].forEach(function (id) {
       var a = document.getElementById(id);
