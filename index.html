@@ -592,8 +592,8 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         <h3>Windows</h3>
         <p>Installs once, no admin needed. Adds a Start-menu entry and "Open with SynKitab" for 60+ file types.</p>
         <ul><li>Windows 10 or 11, 64-bit</li><li data-rel="setup-size">One small installer</li><li>Opens PDFs and 60+ formats from Explorer</li></ul>
-        <p class="alts"><a href="https://apps.microsoft.com/detail/9N33KGTDQC4P">Get it from the Microsoft Store</a></p>
-        <a class="btn btn-primary" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe"><svg><use href="#dl"/></svg>Download for Windows</a>
+        <p class="alts"><a href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe">Direct download (.exe)</a></p>
+        <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9N33KGTDQC4P"><svg><use href="#dl"/></svg>Get it from the Microsoft Store</a>
       </div>
       <div class="card rv" data-os="android">
         <span class="badge">For this device</span>
@@ -697,8 +697,10 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
          : /Windows/i.test(ua) ? "windows"
          : linux ? "linux"
          : "web";
+  // Windows goes to the Store: that package is signed by Microsoft, while the
+  // direct .exe is unsigned and stops at a SmartScreen warning.
   var targets = {
-    windows: ["https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe", "Download for Windows"],
+    windows: ["https://apps.microsoft.com/detail/9N33KGTDQC4P", "Get it from the Microsoft Store"],
     android: ["https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab.apk", "Download for Android"],
     linux: ["https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-x86_64.AppImage", "Download for Linux"],
     web: ["https://reader.synkitab.com/", "Open the web reader"]
