@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SynKitab: your library, typeset and synced</title>
-<meta name="description" content="Open PDFs, EPUBs, Word, Excel, CSV, code, images and comics on Windows, Android, Linux and the web. Every file opens as itself, instantly and offline. Your place, highlights and notes follow you to every device.">
+<meta name="description" content="Open PDFs, EPUBs, Word, Excel, PowerPoint, Markdown, notebooks, code, images and comics on Windows, Android, Linux and the web. Every file opens as itself, instantly and offline. Your place, highlights and notes follow you to every device.">
 <meta name="theme-color" content="#0b0b0d">
 <meta property="og:title" content="SynKitab">
 <meta property="og:description" content="Your library, typeset and synced. Windows, Android, Linux and the web.">
@@ -197,7 +197,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 .ft .tag i{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 7px;border-radius:6px;color:#0b0b0d}
 .ft .say{color:var(--muted);font-size:13px;margin-top:4px}
 .ft .vis{flex:1;position:relative;margin-top:14px}
-.w2{grid-column:span 2}.h2{grid-row:span 2}
+.w2{grid-column:span 2}.w3{grid-column:span 3}.h2{grid-row:span 2}
 
 /* word */
 .doc{position:absolute;left:8%;right:8%;top:6px;bottom:-30px;background:var(--paper);border-radius:6px 6px 0 0;padding:22px 24px;box-shadow:0 20px 50px -20px #000;transform:translateY(0);animation:rise 10s ease-in-out infinite}
@@ -266,9 +266,41 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 .duo span::after{content:"";position:absolute;left:10px;right:10px;top:32px;bottom:14px;background:repeating-linear-gradient(180deg,#d9d5ca 0 5px,transparent 5px 12px)}
 .duo span:last-child{transform:translateY(10px) rotate(3deg)}
 
+/* slides */
+.slide{position:absolute;left:8%;right:8%;top:6px;bottom:-26px;border-radius:6px 6px 0 0;padding:16px 18px;color:#fff;overflow:hidden;background:linear-gradient(135deg,#1f2a44 0%,#3a2350 100%);box-shadow:0 20px 50px -20px #000;animation:rise 10s ease-in-out infinite}
+.slide b{display:block;font-family:var(--serif);font-weight:600;font-size:19px;margin-bottom:10px}
+.slide .bu{display:flex;gap:8px;align-items:center;margin:7px 0}
+.slide .bu::before{content:"";width:6px;height:6px;border-radius:50%;background:#ff8a5c;flex:none}
+.slide .bu i{display:block;height:6px;border-radius:3px;background:rgba(255,255,255,.55)}
+.slide .bars{position:absolute;right:20px;top:46px;bottom:18px;display:flex;gap:6px;align-items:flex-end}
+.slide .bars span{width:14px;border-radius:3px 3px 0 0;background:linear-gradient(180deg,#ffb36b,#ff6b5c)}
+.slide .bars span:nth-child(1){height:38%}.slide .bars span:nth-child(2){height:56%}.slide .bars span:nth-child(3){height:47%}.slide .bars span:nth-child(4){height:82%}
+
+/* markdown + LaTeX */
+.mdv{position:absolute;inset:4px 0 0;border-radius:10px 10px 0 0;background:var(--paper);padding:12px 14px;color:var(--ink);overflow:hidden}
+.mdv b{display:block;font-family:var(--serif);font-weight:600;font-size:16px;margin-bottom:6px}
+.mdv .ln{height:5px;border-radius:3px;background:#d9d5ca;margin:6px 0;width:86%}
+.eq{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-family:var(--serif);font-style:italic;font-size:19px}
+.eq .fr{display:inline-flex;flex-direction:column;align-items:center;font-size:14px;line-height:1.15}
+.eq .fr span:first-child{border-bottom:1.5px solid var(--ink);padding:0 3px}
+.eq sup{font-size:11px}
+
+/* notebook */
+.nb{position:absolute;inset:4px 0 0;border-radius:10px 10px 0 0;background:#101113;border:1px solid var(--line2);padding:10px 14px;font:11.5px/1.7 ui-monospace,"Cascadia Code",Consolas,monospace;color:#c9d1d9;overflow:hidden}
+.nb em{font-style:normal;color:#8b949e;margin-right:10px}
+.nb .cell{display:block;background:#0d1117;border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:4px 10px;margin:4px 0 8px}
+.nb .plot{display:flex;gap:7px;align-items:flex-end;height:58px;padding-left:2px;border-left:1px solid #30363d;border-bottom:1px solid #30363d;width:62%}
+.nb .plot span{flex:1;border-radius:2px 2px 0 0;background:#f37626}
+.nb .plot span:nth-child(1){height:30%}.nb .plot span:nth-child(2){height:52%}.nb .plot span:nth-child(3){height:44%}.nb .plot span:nth-child(4){height:70%}.nb .plot span:nth-child(5){height:91%}.nb .plot span:nth-child(6){height:64%}
+
+/* the rest */
+.more{position:absolute;inset:6px 0 0;display:flex;flex-wrap:wrap;align-content:flex-start;gap:8px}
+.more span{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text);border:1px solid var(--line2);border-radius:10px;padding:7px 11px;background:rgba(255,255,255,.03)}
+.more span i{font-style:normal;font:700 10px ui-monospace,Consolas,monospace;letter-spacing:.04em;padding:2px 6px;border-radius:5px;color:#0b0b0d}
+
 /* extension ribbon */
 .ribbon{position:relative;margin-top:42px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.ribbon .track{display:flex;gap:10px;width:max-content;animation:marquee 60s linear infinite}
+.ribbon .track{display:flex;gap:10px;width:max-content;animation:marquee 140s linear infinite}
 .ribbon:hover .track{animation-play-state:paused}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .ribbon span{font:600 13px ui-monospace,Consolas,monospace;padding:7px 12px;border-radius:9px;border:1px solid var(--line2);background:rgba(255,255,255,.03);color:var(--muted);white-space:nowrap}
@@ -276,10 +308,14 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 
 @media (max-width:980px){
   .fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .w3{grid-column:span 1}
 }
 @media (max-width:560px){
   .fgrid{grid-template-columns:minmax(0,1fr);grid-auto-rows:200px}
-  .w2{grid-column:span 1}.h2{grid-row:span 2}
+  .w2,.w3{grid-column:span 1}.h2{grid-row:span 2}
+  /* Narrow tiles wrap their captions: room for the chips and the plot. */
+  .w3{grid-row:span 2}
+  .nb .cell{margin:2px 0 4px}.nb .plot{height:34px}
 }
 
 /* reveal */
@@ -345,7 +381,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
     <div>
       <span class="eyebrow rv"><span class="dot"></span><span data-rel="headline">Now on Windows, Android, Linux and the web</span></span>
       <h1 class="rv">Every book you own.<br><em>One library,</em> every device.</h1>
-      <p class="lede rv">PDFs, EPUBs, Word, Excel, code, comics and more, each opened as itself, instantly and offline. Close it on your phone and pick it up on your PC at the same line.</p>
+      <p class="lede rv">PDFs, EPUBs, Word, Excel, PowerPoint, Markdown, code, comics and more, each opened as itself, instantly and offline. Close it on your phone and pick it up on your PC at the same line.</p>
       <div class="ctas rv">
         <a class="btn btn-primary" id="hero-cta" href="#download"><svg><use href="#dl"/></svg><span>Download SynKitab</span></a>
         <a class="btn btn-ghost" href="https://reader.synkitab.com/"><svg><use href="#globe"/></svg>Read in the browser</a>
@@ -397,7 +433,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
     <span><svg><use href="#win"/></svg>Windows 10 &amp; 11</span>
     <span><svg><use href="#droid"/></svg>Android 7 and up</span>
     <span><svg><use href="#globe"/></svg>Any modern browser</span>
-    <span>PDF · EPUB · Word · Excel · CSV · Code · Images · Comics</span>
+    <span>PDF · EPUB · Word · Excel · PowerPoint · Markdown · Images · Code · Comics</span>
   </div>
 </div>
 
@@ -405,7 +441,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
   <div class="wrap">
     <div class="kicker rv">Every format</div>
     <h2 class="rv">Open anything. It opens as itself.</h2>
-    <p class="sub rv">Word documents as pages, spreadsheets as sheets, code with its colours, comics a page at a time or as one long scrolling strip for webtoons and manhwa. Nothing is converted on the way in and nothing is uploaded to read it, so a file opens the instant you tap it, even offline.</p>
+    <p class="sub rv">Word documents as pages, spreadsheets as sheets, slides at their own layout, Markdown with its maths typeset, notebooks with their plots, code with its colours, comics a page at a time or as one long scrolling strip for webtoons and manhwa. Nothing is converted on the way in and nothing is uploaded to read it, so a file opens the instant you tap it, even offline.</p>
     <div class="proof rv">
       <span><svg width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 10 17 19 7"/></svg>No conversion, no waiting</span>
       <span><svg width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 10 17 19 7"/></svg>Works offline</span>
@@ -414,6 +450,12 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
     </div>
 
     <div class="fgrid">
+      <div class="ft w2 rv">
+        <div class="tag"><i style="background:#e5534b;color:#fff">PDF</i><i style="background:#5b9bd9">EPUB</i>Books, with everything you mark</div>
+        <div class="say">Highlights, notes, bookmarks and your place, synced to every device.</div>
+        <div class="vis"><div class="duo"><span></span><span></span></div></div>
+      </div>
+
       <div class="ft w2 h2 rv">
         <div class="tag"><i style="background:#2b579a;color:#fff">DOCX</i>Word documents</div>
         <div class="say">Headings, lists, tables, pictures and links, laid out as the page it was written on.</div>
@@ -445,14 +487,63 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         </div>
       </div>
 
+      <div class="ft w2 rv">
+        <div class="tag"><i style="background:#d24726;color:#fff">PPTX</i>PowerPoint decks</div>
+        <div class="say">Every slide at its own layout, with the deck's colours, pictures and tables.</div>
+        <div class="vis">
+          <div class="slide">
+            <b>Q3 in review</b>
+            <div class="bu"><i style="width:44%"></i></div>
+            <div class="bu"><i style="width:36%"></i></div>
+            <div class="bu"><i style="width:40%"></i></div>
+            <div class="bars"><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="pageno">4 / 18</div>
+        </div>
+      </div>
+
       <div class="ft rv">
-        <div class="tag"><i style="background:#8957e5;color:#fff">CODE</i>40+ languages</div>
+        <div class="tag"><i style="background:#e3b341">IMG</i>Pictures, scans and SVG</div>
+        <div class="vis"><div class="photo"></div><div class="zoomchip">250%</div></div>
+      </div>
+
+      <div class="ft rv">
+        <div class="tag"><i style="background:#c9d1d9">MD</i>Markdown and LaTeX</div>
+        <div class="vis">
+          <div class="mdv">
+            <b>Notes</b>
+            <div class="ln"></div>
+            <div class="eq"><i>E</i> = <i>mc</i><sup>2</sup> &nbsp;·&nbsp; <span class="fr"><span>&#x3A3;x</span><span>n</span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ft rv">
+        <div class="tag"><i style="background:#3ddc84">CSV</i>Tables</div>
+        <div class="vis">
+          <div class="csv"><b>name,qty,price</b><br>apples,12,<span class="q">"1,200"</span><br>pears,7,640<br>plums,31,<span class="q">"2,050"</span></div>
+        </div>
+      </div>
+
+      <div class="ft rv">
+        <div class="tag"><i style="background:#8957e5;color:#fff">CODE</i>70 languages</div>
         <div class="vis">
           <div class="code">
 <div><u>1</u><span class="k">def</span> <span class="f">greet</span>(name):</div>
 <div><u>2</u>    <span class="c"># read as itself</span></div>
 <div><u>3</u>    <span class="k">return</span> <span class="s">f"hi {name}"</span></div>
 <div><u>4</u><span class="nm">print</span>(greet(<span class="s">"you"</span>))<span class="cursor"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ft w2 rv">
+        <div class="tag"><i style="background:#f37626;color:#fff">IPYNB</i>Jupyter notebooks</div>
+        <div class="say">Markdown cells, coloured code, and the outputs and plots it saved.</div>
+        <div class="vis">
+          <div class="nb">
+            <div><em>In [3]:</em><span class="cell"><span class="k">import</span> pandas <span class="k">as</span> pd; df.plot.bar()</span></div>
+            <div class="plot"><span></span><span></span><span></span><span></span><span></span><span></span></div>
           </div>
         </div>
       </div>
@@ -465,26 +556,24 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         </div>
       </div>
 
-      <div class="ft rv">
-        <div class="tag"><i style="background:#e3b341">IMG</i>Pictures and scans</div>
-        <div class="vis"><div class="photo"></div><div class="zoomchip">250%</div></div>
-      </div>
-
-      <div class="ft rv">
-        <div class="tag"><i style="background:#3ddc84">CSV</i>Tables</div>
+      <div class="ft w3 rv">
+        <div class="tag"><i style="background:#5b9bd9">+</i>And the rest</div>
+        <div class="say">Each shown as itself, its source a tap away where it has one.</div>
         <div class="vis">
-          <div class="csv"><b>name,qty,price</b><br>apples,12,<span class="q">"1,200"</span><br>pears,7,640<br>plums,31,<span class="q">"2,050"</span></div>
+          <div class="more">
+            <span><i style="background:#e5534b;color:#fff">HTML</i>Saved web pages</span>
+            <span><i style="background:#9b6bff;color:#fff">FB2</i>FictionBook e-books</span>
+            <span><i style="background:#e3b341">EML</i>Saved emails</span>
+            <span><i style="background:#3ddc84">SVG</i>Vector pictures</span>
+            <span><i style="background:#58a6ff">TEX</i>LaTeX source</span>
+            <span><i style="background:#2496ed;color:#fff">DOCKER</i>Dockerfiles and .env</span>
+            <span><i style="background:#c9d1d9">TXT</i>Text, logs, reStructuredText, Org</span>
+          </div>
         </div>
-      </div>
-
-      <div class="ft w2 rv">
-        <div class="tag"><i style="background:#e5534b;color:#fff">PDF</i><i style="background:#5b9bd9">EPUB</i>Books, with everything you mark</div>
-        <div class="say">Highlights, notes, bookmarks and your place, synced to every device.</div>
-        <div class="vis"><div class="duo"><span></span><span></span></div></div>
       </div>
     </div>
 
-    <div class="ribbon rv" aria-label="Supported file types"><div class="track"><span class="hot">.pdf</span><span class="hot">.epub</span><span class="hot">.docx</span><span class="hot">.xlsx</span><span class="hot">.csv</span><span class="">.tsv</span><span class="">.txt</span><span class="hot">.md</span><span class="">.markdown</span><span class="">.log</span><span class="hot">.py</span><span class="">.js</span><span class="">.ts</span><span class="">.tsx</span><span class="">.jsx</span><span class="">.java</span><span class="">.kt</span><span class="">.c</span><span class="">.cpp</span><span class="">.h</span><span class="">.cs</span><span class="">.go</span><span class="">.rs</span><span class="">.rb</span><span class="">.php</span><span class="">.swift</span><span class="">.dart</span><span class="">.scala</span><span class="">.lua</span><span class="">.r</span><span class="">.pl</span><span class="">.hs</span><span class="">.ex</span><span class="">.sh</span><span class="">.ps1</span><span class="">.bat</span><span class="">.sql</span><span class="">.json</span><span class="">.yaml</span><span class="">.yml</span><span class="">.toml</span><span class="">.ini</span><span class="">.xml</span><span class="">.css</span><span class="">.scss</span><span class="">.jpg</span><span class="">.jpeg</span><span class="hot">.png</span><span class="">.webp</span><span class="">.gif</span><span class="">.bmp</span><span class="">.tif</span><span class="">.tiff</span><span class="hot">.cbz</span><span class="">.cbt</span><span class="hot">.pdf</span><span class="hot">.epub</span><span class="hot">.docx</span><span class="hot">.xlsx</span><span class="hot">.csv</span><span class="">.tsv</span><span class="">.txt</span><span class="hot">.md</span><span class="">.markdown</span><span class="">.log</span><span class="hot">.py</span><span class="">.js</span><span class="">.ts</span><span class="">.tsx</span><span class="">.jsx</span><span class="">.java</span><span class="">.kt</span><span class="">.c</span><span class="">.cpp</span><span class="">.h</span><span class="">.cs</span><span class="">.go</span><span class="">.rs</span><span class="">.rb</span><span class="">.php</span><span class="">.swift</span><span class="">.dart</span><span class="">.scala</span><span class="">.lua</span><span class="">.r</span><span class="">.pl</span><span class="">.hs</span><span class="">.ex</span><span class="">.sh</span><span class="">.ps1</span><span class="">.bat</span><span class="">.sql</span><span class="">.json</span><span class="">.yaml</span><span class="">.yml</span><span class="">.toml</span><span class="">.ini</span><span class="">.xml</span><span class="">.css</span><span class="">.scss</span><span class="">.jpg</span><span class="">.jpeg</span><span class="hot">.png</span><span class="">.webp</span><span class="">.gif</span><span class="">.bmp</span><span class="">.tif</span><span class="">.tiff</span><span class="hot">.cbz</span><span class="">.cbt</span></div></div>
+    <div class="ribbon rv" aria-label="Supported file types"><div class="track"><span class="hot">.pdf</span><span class="hot">.epub</span><span class="hot">.docx</span><span class="hot">.xlsx</span><span class="hot">.pptx</span><span class="hot">.md</span><span class="">.jpg</span><span class="hot">.png</span><span class="">.txt</span><span class="hot">.csv</span><span class="hot">.ipynb</span><span class="hot">.html</span><span class="hot">.py</span><span class="">.js</span><span class="">.json</span><span class="">.svg</span><span class="hot">.cbz</span><span class="">.tex</span><span class="">.text</span><span class="">.log</span><span class="">.rst</span><span class="">.org</span><span class="">.adoc</span><span class="">.asciidoc</span><span class="">.eml</span><span class="">.mjs</span><span class="">.jsx</span><span class="">.ts</span><span class="">.tsx</span><span class="">.java</span><span class="">.kt</span><span class="">.kts</span><span class="">.c</span><span class="">.h</span><span class="">.cpp</span><span class="">.cc</span><span class="">.hpp</span><span class="">.cs</span><span class="">.go</span><span class="">.rs</span><span class="">.rb</span><span class="">.php</span><span class="">.swift</span><span class="">.dart</span><span class="">.scala</span><span class="">.lua</span><span class="">.r</span><span class="">.pl</span><span class="">.hs</span><span class="">.ex</span><span class="">.exs</span><span class="">.sh</span><span class="">.bash</span><span class="">.zsh</span><span class="">.ps1</span><span class="">.bat</span><span class="">.sql</span><span class="">.yaml</span><span class="">.yml</span><span class="">.toml</span><span class="">.ini</span><span class="">.xml</span><span class="">.css</span><span class="">.scss</span><span class="">.less</span><span class="">.styl</span><span class="">.htm</span><span class="">.xhtml</span><span class="">.vue</span><span class="">.svelte</span><span class="">.fb2</span><span class="">.sty</span><span class="">.gradle</span><span class="">.groovy</span><span class="">Dockerfile</span><span class="">Makefile</span><span class="">.mk</span><span class="">.cmake</span><span class="">.env</span><span class="">.properties</span><span class="">.cfg</span><span class="">.conf</span><span class="">.jsonc</span><span class="">.jl</span><span class="">.nim</span><span class="">.nix</span><span class="">.elm</span><span class="">.erl</span><span class="">.clj</span><span class="">.cljs</span><span class="">.fs</span><span class="">.fsx</span><span class="">.ml</span><span class="">.proto</span><span class="">.graphql</span><span class="">.gql</span><span class="">.vim</span><span class="">.coffee</span><span class="">.pas</span><span class="">.vb</span><span class="">.f90</span><span class="">.sv</span><span class="">.vhd</span><span class="">.asm</span><span class="">.tcl</span><span class="">.cr</span><span class="">.diff</span><span class="">.patch</span><span class="">.awk</span><span class="">.glsl</span><span class="">.wat</span><span class="">.lisp</span><span class="">.scm</span><span class="">.rkt</span><span class="">.hbs</span><span class="">.twig</span><span class="">.erb</span><span class="">.haml</span><span class="">.markdown</span><span class="">.mdx</span><span class="">.tsv</span><span class="">.jpeg</span><span class="">.webp</span><span class="">.gif</span><span class="">.bmp</span><span class="">.tif</span><span class="">.tiff</span><span class="">.cbt</span><span class="hot">.pdf</span><span class="hot">.epub</span><span class="hot">.docx</span><span class="hot">.xlsx</span><span class="hot">.pptx</span><span class="hot">.md</span><span class="">.jpg</span><span class="hot">.png</span><span class="">.txt</span><span class="hot">.csv</span><span class="hot">.ipynb</span><span class="hot">.html</span><span class="hot">.py</span><span class="">.js</span><span class="">.json</span><span class="">.svg</span><span class="hot">.cbz</span><span class="">.tex</span><span class="">.text</span><span class="">.log</span><span class="">.rst</span><span class="">.org</span><span class="">.adoc</span><span class="">.asciidoc</span><span class="">.eml</span><span class="">.mjs</span><span class="">.jsx</span><span class="">.ts</span><span class="">.tsx</span><span class="">.java</span><span class="">.kt</span><span class="">.kts</span><span class="">.c</span><span class="">.h</span><span class="">.cpp</span><span class="">.cc</span><span class="">.hpp</span><span class="">.cs</span><span class="">.go</span><span class="">.rs</span><span class="">.rb</span><span class="">.php</span><span class="">.swift</span><span class="">.dart</span><span class="">.scala</span><span class="">.lua</span><span class="">.r</span><span class="">.pl</span><span class="">.hs</span><span class="">.ex</span><span class="">.exs</span><span class="">.sh</span><span class="">.bash</span><span class="">.zsh</span><span class="">.ps1</span><span class="">.bat</span><span class="">.sql</span><span class="">.yaml</span><span class="">.yml</span><span class="">.toml</span><span class="">.ini</span><span class="">.xml</span><span class="">.css</span><span class="">.scss</span><span class="">.less</span><span class="">.styl</span><span class="">.htm</span><span class="">.xhtml</span><span class="">.vue</span><span class="">.svelte</span><span class="">.fb2</span><span class="">.sty</span><span class="">.gradle</span><span class="">.groovy</span><span class="">Dockerfile</span><span class="">Makefile</span><span class="">.mk</span><span class="">.cmake</span><span class="">.env</span><span class="">.properties</span><span class="">.cfg</span><span class="">.conf</span><span class="">.jsonc</span><span class="">.jl</span><span class="">.nim</span><span class="">.nix</span><span class="">.elm</span><span class="">.erl</span><span class="">.clj</span><span class="">.cljs</span><span class="">.fs</span><span class="">.fsx</span><span class="">.ml</span><span class="">.proto</span><span class="">.graphql</span><span class="">.gql</span><span class="">.vim</span><span class="">.coffee</span><span class="">.pas</span><span class="">.vb</span><span class="">.f90</span><span class="">.sv</span><span class="">.vhd</span><span class="">.asm</span><span class="">.tcl</span><span class="">.cr</span><span class="">.diff</span><span class="">.patch</span><span class="">.awk</span><span class="">.glsl</span><span class="">.wat</span><span class="">.lisp</span><span class="">.scm</span><span class="">.rkt</span><span class="">.hbs</span><span class="">.twig</span><span class="">.erb</span><span class="">.haml</span><span class="">.markdown</span><span class="">.mdx</span><span class="">.tsv</span><span class="">.jpeg</span><span class="">.webp</span><span class="">.gif</span><span class="">.bmp</span><span class="">.tif</span><span class="">.tiff</span><span class="">.cbt</span></div></div>
   </div>
 </section>
 
@@ -589,7 +678,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         <div class="os"><svg style="color:#4ea8ff"><use href="#win"/></svg></div>
         <h3>Windows</h3>
         <p>Installs once, no admin needed. Adds a Start-menu entry and "Open with SynKitab" for 60+ file types.</p>
-        <ul><li>Windows 10 or 11, 64-bit</li><li data-rel="setup-size">One small installer</li><li>Opens PDFs and 60+ formats from Explorer</li></ul>
+        <ul><li>Windows 10 or 11, 64-bit</li><li data-rel="setup-size">One small installer</li><li>Opens PDFs and 120+ formats from Explorer</li></ul>
         <p class="alts"><a href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe">Direct download (.exe)</a></p>
         <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9N33KGTDQC4P"><svg><use href="#dl"/></svg>Get it from the Microsoft Store</a>
       </div>
@@ -598,7 +687,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         <div class="os"><svg style="color:#3ddc84"><use href="#droid"/></svg></div>
         <h3>Android</h3>
         <p>Download the APK and open it. Android will ask you to allow installs from your browser the first time.</p>
-        <ul><li>Android 7.0 or newer</li><li data-rel="apk-size">A single APK</li><li>Opens 60+ file types from any app</li></ul>
+        <ul><li>Android 7.0 or newer</li><li data-rel="apk-size">A single APK</li><li>Opens 120+ file types from any app</li></ul>
         <a class="btn btn-primary" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab.apk"><svg><use href="#dl"/></svg>Download the APK</a>
       </div>
       <div class="card rv" data-os="linux">
