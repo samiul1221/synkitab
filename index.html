@@ -94,6 +94,18 @@ h1 em{font-style:italic;background:linear-gradient(100deg,#9cc4ff 0%,var(--accen
 .marks{border-left:1px solid var(--line);background:#141417;padding:14px 12px;font-size:11px}
 .marks b{display:block;font-size:12px;margin-bottom:10px}
 .mark{border-radius:8px;background:#1c1c20;border:1px solid var(--line);padding:8px;margin-bottom:8px;color:var(--muted);line-height:1.35}
+.l.say{background:linear-gradient(90deg,#d9d5ca 0 42%,rgba(91,155,217,.8) 50%,#d9d5ca 58% 100%);background-size:260% 100%;animation:say 4.5s linear infinite}
+@keyframes say{from{background-position:100% 0}to{background-position:0 0}}
+.listen{position:absolute;right:12px;bottom:12px;display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:999px;background:rgba(18,18,20,.9);border:1px solid var(--line2);font-size:11px;font-weight:500;color:var(--text);box-shadow:0 8px 24px -8px rgba(0,0,0,.7)}
+.listen .pp{width:20px;height:20px;border-radius:50%;background:var(--accent);display:grid;place-items:center;color:#0b0b0d}
+.listen .pp svg{width:9px;height:9px}
+.eq{display:flex;align-items:center;gap:2px;height:13px}
+.eq i{width:2px;height:100%;border-radius:1px;background:var(--accent);transform:scaleY(.5);animation:eq 1.15s ease-in-out infinite}
+.eq i:nth-child(2){transform:scaleY(.85);animation-duration:.9s;animation-delay:-.3s}
+.eq i:nth-child(3){transform:scaleY(.35);animation-duration:1.3s;animation-delay:-.6s}
+.eq i:nth-child(4){transform:scaleY(.7);animation-duration:1s;animation-delay:-.15s}
+.eq i:nth-child(5){transform:scaleY(.45);animation-duration:1.2s;animation-delay:-.45s}
+@keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
 .mark .sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
 .chip{position:absolute;display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;padding:9px 13px;border-radius:12px;background:rgba(22,22,26,.92);border:1px solid var(--line2);box-shadow:0 18px 40px -12px rgba(0,0,0,.8);backdrop-filter:blur(8px)}
 .chip.a{right:96px;top:-22px;animation:bob 6s ease-in-out infinite}
@@ -406,7 +418,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
               <div class="by">Chapter three</div>
               <h4>On reading slowly, and then all at once</h4>
               <div class="l"></div><div class="l m"></div><div class="l"></div><div class="l s"></div>
-              <div class="hl"></div><div class="l m"></div><div class="l"></div>
+              <div class="hl"></div><div class="l m say"></div><div class="l"></div>
               <div class="l"></div><div class="l s"></div><div class="l m"></div><div class="l"></div>
               <div class="hl" style="width:56%"></div><div class="l"></div><div class="l m"></div>
               <div class="l"></div><div class="l s"></div><div class="l"></div><div class="l m"></div>
@@ -414,6 +426,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
               <div class="l"></div><div class="l"></div><div class="l m"></div><div class="l s"></div>
             </div>
             <div class="anchor"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 3v18M3 12h18M12 3l-3 3m3-3 3 3m-3 15-3-3m3 3 3-3M3 12l3-3m-3 3 3 3m15-3-3-3m3 3-3 3"/></svg></div>
+            <div class="listen"><span class="pp"><svg viewBox="0 0 10 10"><path fill="currentColor" d="M2 1h2v8H2zM6 1h2v8H6z"/></svg></span><span class="eq"><i></i><i></i><i></i><i></i><i></i></span>Reading aloud</div>
           </div>
           <div class="marks">
             <b>Marks · 3</b>
