@@ -3,13 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SynKitab: your library, typeset and synced</title>
-<meta name="description" content="Open PDFs, EPUBs, Word, Excel, PowerPoint, Markdown, notebooks, code, images and comics on Windows, Android, Linux and the web. Every file opens as itself, instantly and offline. Listen to them like an audiobook. Your place, highlights and notes follow you to every device.">
+<title>SynKitab: PDF and EPUB Reader with Offline Read Aloud</title>
+<meta name="description" content="Read PDFs, EPUBs, Word files and comics on Windows, Android, Linux and the web. Listen like an audiobook with natural offline voices, and continue on any device.">
 <meta name="theme-color" content="#0b0b0d">
-<meta property="og:title" content="SynKitab">
-<meta property="og:description" content="Your library, typeset and synced. Windows, Android, Linux and the web.">
-<meta property="og:image" content="logo.png">
-<link rel="icon" href="logo.png">
+<link rel="canonical" href="https://synkitab.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SynKitab">
+<meta property="og:url" content="https://synkitab.com/">
+<meta property="og:title" content="SynKitab: PDF and EPUB Reader with Offline Read Aloud">
+<meta property="og:description" content="Read PDFs, EPUBs, Word files and comics on Windows, Android, Linux and the web. Listen like an audiobook with natural offline voices, and continue on any device.">
+<meta property="og:image" content="https://synkitab.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SynKitab reading a book aloud on a desktop, with the words: Every book you own. One library, every device.">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"SynKitab","url":"https://synkitab.com/"},{"@type":"SoftwareApplication","name":"SynKitab","url":"https://synkitab.com/","image":"https://synkitab.com/og.png","description":"Read PDFs, EPUBs, Word files and comics on Windows, Android, Linux and the web. Listen like an audiobook with natural offline voices, and continue on any device.","applicationCategory":"ReferenceApplication","operatingSystem":"Windows, Android, Linux","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+<link rel="icon" href="/logo.png">
 <link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 :root{
@@ -106,6 +115,7 @@ h1 em{font-style:italic;background:linear-gradient(100deg,#9cc4ff 0%,var(--accen
 .eq i:nth-child(4){transform:scaleY(.7);animation-duration:1s;animation-delay:-.15s}
 .eq i:nth-child(5){transform:scaleY(.45);animation-duration:1.2s;animation-delay:-.45s}
 @keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+.lede mark{color:#f4f4f1;font-weight:500;background:linear-gradient(transparent 66%,rgba(91,155,217,.34) 66%,rgba(91,155,217,.34) 94%,transparent 94%);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 2px}
 .mark .sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
 .chip{position:absolute;display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;padding:9px 13px;border-radius:12px;background:rgba(22,22,26,.92);border:1px solid var(--line2);box-shadow:0 18px 40px -12px rgba(0,0,0,.8);backdrop-filter:blur(8px)}
 .chip.a{right:96px;top:-22px;animation:bob 6s ease-in-out infinite}
@@ -394,7 +404,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
     <div>
       <span class="eyebrow rv"><span class="dot"></span><span data-rel="headline">Now on Windows, Android, Linux and the web</span></span>
       <h1 class="rv">Every book you own.<br><em>One library,</em> every device.</h1>
-      <p class="lede rv">PDFs, EPUBs, Word, Excel, PowerPoint, Markdown, code, comics and more, each opened as itself, instantly and offline. Listen to any book like an audiobook, then close it on your phone and pick it up on your PC at the same line.</p>
+      <p class="lede rv"><mark>Read any file</mark>, from PDFs and EPUBs to Word and comics. <mark>Listen like an audiobook</mark>. Then <mark>continue on any device</mark>, at the same line.</p>
       <div class="ctas rv">
         <a class="btn btn-primary" id="hero-cta" href="#download"><svg><use href="#dl"/></svg><span>Download SynKitab</span></a>
         <a class="btn btn-ghost" href="https://reader.synkitab.com/"><svg><use href="#globe"/></svg>Read in the browser</a>
