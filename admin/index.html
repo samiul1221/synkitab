@@ -50,6 +50,11 @@ table{width:100%;border-collapse:collapse;font-size:14px}
 td{padding:5px 0;border-bottom:1px solid var(--line)}
 td:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
 footer{color:var(--faint);font-size:12.5px;margin-top:20px}
+h3{font-size:15px;font-weight:600;margin:28px 0 12px}
+.meter{height:6px;border-radius:3px;background:var(--line2);margin-top:10px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.meter.warn i{background:#e9b872}.meter.full i{background:var(--bad)}
+td.n{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;padding-left:12px}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -82,6 +87,13 @@ footer{color:var(--faint);font-size:12.5px;margin-top:20px}
     <div class="charts">
       <div class="card"><h2>Platforms, last 30 days</h2><table id="t-platforms"></table></div>
       <div class="card"><h2>Versions, last 7 days</h2><table id="t-versions"></table></div>
+    </div>
+    <h3>Database</h3>
+    <div class="grid" id="db-kpis"></div>
+    <div class="charts">
+      <div class="card"><h2>Largest tables</h2><table id="t-tables"></table></div>
+      <div class="card"><h2>What is stored</h2><table id="t-counts"></table></div>
+      <div class="card"><h2>Waiting and reported</h2><table id="t-queues"></table></div>
     </div>
     <footer id="foot"></footer>
   </main>

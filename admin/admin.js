@@ -67,6 +67,69 @@ function table(id, obj) {
   }
 }
 
+const size = b => b >= 1073741824 ? (b / 1073741824).toFixed(2) + ' GB'
+  : b >= 1048576 ? (b / 1048576).toFixed(1) + ' MB'
+  : b >= 1024 ? Math.round(b / 1024) + ' KB' : b + ' B';
+
+// A number against its limit, with a bar that turns amber at 70% and red at 90%.
+function gauge(k, used, limit, s) {
+  const share = limit ? used / limit : 0;
+  const c = el('div', 'card');
+  const m = el('div', 'meter' + (share >= .9 ? ' full' : share >= .7 ? ' warn' : ''));
+  const fill = el('i');
+  fill.style.width = Math.min(100, 100 * share).toFixed(1) + '%';
+  m.append(fill);
+  c.append(el('div', 'k', k), el('div', 'v', size(used)), el('div', 's', s), m);
+  $('db-kpis').append(c);
+}
+
+function rows(id, list) {
+  const t = $('t-' + id);
+  t.replaceChildren();
+  for (const cells of list) {
+    const tr = el('tr');
+    cells.forEach((v, i) => tr.append(el('td', i ? 'n' : null, String(v))));
+    t.append(tr);
+  }
+}
+
+const LABELS = {
+  accounts: 'Accounts', books: 'Books', versions: 'Book versions', annotations: 'Highlights and notes',
+  clubs: 'Clubs', club_messages: 'Club messages', direct_messages: 'Chat messages', devices: 'Devices',
+  storage_gc: 'Files to delete', drive_gc: 'Drive files to delete',
+  bugs: 'Bug reports', chats: 'Chat reports', alerts: 'Ops alerts',
+};
+
+async function loadDb() {
+  const { data: d, error } = await db.rpc('admin_db_stats');
+  $('db-kpis').replaceChildren();
+  if (error) {
+    $('db-kpis').append(el('div', 'err', 'Database stats: ' + error.message));
+    return;
+  }
+  const files = d.storage.reduce((sum, b) => sum + b.bytes, 0);
+  const count = d.storage.reduce((sum, b) => sum + b.files, 0);
+  gauge('Database', d.db_bytes, d.db_limit_bytes,
+        Math.round(100 * d.db_bytes / d.db_limit_bytes) + '% of ' + size(d.db_limit_bytes) + ' on the plan');
+  gauge('File storage', files, d.storage_limit_bytes,
+        count + ' files · ' + Math.round(100 * files / d.storage_limit_bytes) + '% of ' + size(d.storage_limit_bytes));
+  kpi2('Connections', d.connections + ' / ' + d.max_connections, 'open now, of the most allowed');
+  kpi2('Cache hit', (d.cache_hit ?? '—') + '%', 'reads from memory; under 99% wants a bigger plan');
+  kpi2('Dead rows', d.dead_rows, 'awaiting vacuum · Postgres ' + String(d.postgres).split(' ')[0]);
+  rows('tables', d.tables.map(t => [t.name, size(t.bytes), t.rows + ' rows']));
+  rows('counts', Object.entries(d.counts).map(([k, n]) => [LABELS[k] || k, n]));
+  rows('queues', [
+    ...Object.entries(d.queues).map(([k, n]) => [LABELS[k] || k, n]),
+    ...Object.entries(d.reports).map(([k, n]) => [LABELS[k] || (k[0].toUpperCase() + k.slice(1) + ' reports'), n]),
+  ]);
+}
+
+function kpi2(k, v, s) {
+  const c = el('div', 'card');
+  c.append(el('div', 'k', k), el('div', 'v', String(v)), el('div', 's', s));
+  $('db-kpis').append(c);
+}
+
 function signedOut(message) {
   $('signin').hidden = false;
   $('dash').hidden = true;
@@ -101,6 +164,7 @@ async function load() {
   bars('signups', m.signups_weekly, 'week');
   table('platforms', m.platforms);
   table('versions', m.versions);
+  await loadDb();
   $('foot').textContent = 'Counts only: a random install id, platform and version, once a day. ' +
     (m.first_ping ? 'Installs counted since ' + short(m.first_ping) + '. ' : 'No installs counted yet. ') +
     'Club activity and accounts reach back further. Updated ' + new Date(m.generated_at).toLocaleString() + '.';
