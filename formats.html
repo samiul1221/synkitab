@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Every File SynKitab Opens: 128 Formats, Searchable</title>
+<meta name="description" content="Does SynKitab open your file? Search all 128 formats it reads: PDF, EPUB, Word, Excel, PowerPoint, comics, pictures, notebooks, Markdown and 70 programming languages. A reader, not an editor.">
+<meta name="theme-color" content="#10131a">
+<link rel="canonical" href="https://synkitab.com/formats.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SynKitab">
+<meta property="og:url" content="https://synkitab.com/formats.html">
+<meta property="og:title" content="Every file SynKitab opens">
+<meta property="og:description" content="Search all 128 formats SynKitab reads, by type.">
+<meta property="og:image" content="https://synkitab.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/logo.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --bg:#10131a; --card:#181c25; --card2:#232836;
+  --line:rgba(236,231,223,.08); --line2:rgba(236,231,223,.14);
+  --text:#ece7df; --muted:#a9a49b; --faint:#9a958c; --accent:#5b9bd9; --brand:#1357e0;
+  --serif:"Satoshi",system-ui,-apple-system,"Segoe UI",sans-serif; --sans:"Satoshi",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.glow{position:fixed;inset:0 0 auto;height:640px;pointer-events:none;
+  background:linear-gradient(180deg,#1e2636 0%,rgba(16,19,26,0) 100%),
+             radial-gradient(900px 320px at 50% 0%,rgba(91,155,217,.10),transparent 72%)}
+header{position:relative;border-bottom:1px solid var(--line)}
+header .wrap,main,footer .wrap{max-width:820px;margin:0 auto;padding:0 24px}
+header .wrap{height:64px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.01em}
+.brand img{width:30px;height:30px;border-radius:8px}
+header nav{margin-left:auto;font-size:14.5px;color:var(--muted)}
+header nav a:hover{color:var(--text)}
+main{position:relative;flex:1;width:100%;padding:56px 24px 72px}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,6vw,54px);line-height:1.06;letter-spacing:-.025em;margin:0 0 18px;text-wrap:balance}
+.lede{color:var(--muted);font-size:clamp(16px,1.6vw,18px);max-width:54ch}
+h2{font-size:21px;font-weight:600;letter-spacing:-.01em;margin:46px 0 6px}
+h2 .tag{font-size:12.5px;font-weight:500;color:var(--muted);margin-left:10px;letter-spacing:0}
+p{color:var(--muted);font-size:15px;margin-top:10px;max-width:62ch}
+ol{margin:14px 0 0 20px;color:var(--muted);font-size:15px;display:grid;gap:10px}
+pre{margin-top:10px;padding:14px 16px;border-radius:12px;background:#0e0e11;border:1px solid var(--line);
+  overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.7;color:var(--text)}
+pre .c{color:var(--muted)}
+code.in{font-family:var(--mono);font-size:.9em;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1.5px 6px;color:var(--text)}
+.runs{margin-top:22px;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+.runs div{display:flex;justify-content:space-between;gap:16px;padding:11px 16px;font-size:14px;border-top:1px solid var(--line)}
+.runs div:first-child{border-top:0;background:var(--card2);color:var(--muted);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+.runs span:last-child{color:var(--muted);font-family:var(--mono);font-size:13px;white-space:nowrap}
+.note{margin-top:16px;border-left:2px solid var(--line2);padding:2px 0 2px 16px;color:var(--muted);font-size:14px}
+.note b{color:var(--text);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;font-weight:600;font-size:15px;padding:12px 22px;transition:transform .15s ease,background .2s ease,border-color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:#2a68e8}
+.btn-ghost{border:1px solid var(--line2);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.06)}
+footer{position:relative;border-top:1px solid var(--line);padding:26px 0;color:var(--faint);font-size:13.5px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 22px}
+footer a:hover{color:var(--text)}
+@media (max-width:520px){
+  .actions{align-self:stretch}.btn{width:100%;justify-content:center}
+  .runs div{flex-direction:column;gap:2px}
+  .runs span:last-child{white-space:normal}
+}
+
+
+.find{position:relative;margin-top:30px}
+.find input{width:100%;height:52px;border-radius:999px;border:1px solid var(--line2);background:var(--card2);color:var(--text);
+  font:inherit;font-size:16px;padding:0 22px 0 50px;outline:none}
+.find input:focus{border-color:var(--accent)}
+.find input::placeholder{color:var(--faint)}
+.find svg{position:absolute;left:20px;top:17px;width:18px;height:18px;color:var(--faint)}
+.answer{min-height:24px;margin-top:10px;font-size:15px;color:var(--muted)}
+.answer b{color:var(--text);font-weight:600}
+.answer.yes b{color:var(--accent)}
+section.kind{margin-top:40px}
+section.kind h2{margin:0;display:flex;align-items:baseline;gap:10px}
+section.kind h2 span{font-size:14px;font-weight:400;color:var(--faint);font-variant-numeric:tabular-nums}
+section.kind p{margin-top:4px}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin-top:16px}
+.chip{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:14.5px;color:var(--muted)}
+.chip code{font-family:var(--mono);font-size:13px;color:var(--text);background:var(--card2);border-radius:6px;padding:2px 7px}
+.chip[hidden],section.kind[hidden]{display:none}
+::selection{background:rgba(91,155,217,.3)}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<header><div class="wrap">
+  <a class="brand" href="/"><img src="/logo.png" alt="">SynKitab</a>
+  <nav><a href="/">Home</a> · <a href="/faq.html">FAQ</a></nav>
+</div></header>
+
+<main>
+  <h1>Every file SynKitab opens</h1>
+  <p class="lede">128 kinds of file, each shown as itself: nothing is converted on the way in, and nothing is uploaded to read it. SynKitab is a reader. It opens these to read, listen to and mark up, and does not edit them, apart from page tools for PDFs (reorder, rotate, crop, merge and split).</p>
+
+  <div class="find">
+    <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14Zm5-2 4 4"/></svg>
+    <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search a format: mobi, docx, cbr, python…" aria-label="Search the formats SynKitab opens">
+    <div class="answer" id="answer" aria-live="polite"></div>
+  </div>
+
+  <div id="list"></div>
+</main>
+
+<footer><div class="wrap">
+  <span>© SynKitab</span>
+  <a href="/">Home</a><a href="/faq.html">FAQ</a><a href="/#download">Download</a><a href="https://reader.synkitab.com/">Web reader</a>
+</div></footer>
+
+<script>
+var DATA = {"groups":[{"title":"Books","note":"Reflowing ebooks, fixed pages, and everything you mark in them.","items":[{"ext":"pdf","name":"PDF"},{"ext":"epub","name":"EPUB ebook"},{"ext":"fb2","name":"FictionBook ebook"}]},{"title":"Office documents","note":"Laid out the way they were made: pages, sheets and slides.","items":[{"ext":"docx","name":"Word document"},{"ext":"xlsx","name":"Excel workbook"},{"ext":"pptx","name":"PowerPoint deck"}]},{"title":"Comics","note":"A page at a time, or one long strip for webtoons and manhwa.","items":[{"ext":"cbz","name":"Comic archive (zip)"},{"ext":"cbt","name":"Comic archive (tar)"}]},{"title":"Pictures","note":"Photos, scans and drawings, with zoom.","items":[{"ext":"jpg","name":"JPG picture"},{"ext":"jpeg","name":"JPEG picture"},{"ext":"png","name":"PNG picture"},{"ext":"webp","name":"WEBP picture"},{"ext":"gif","name":"GIF picture"},{"ext":"bmp","name":"BMP picture"},{"ext":"tif","name":"TIF picture"},{"ext":"tiff","name":"TIFF picture"},{"ext":"svg","name":"SVG drawing"}]},{"title":"Tables","note":"Every row and column, searchable.","items":[{"ext":"csv","name":"Comma-separated values"},{"ext":"tsv","name":"Tab-separated values"}]},{"title":"Notebooks","note":"Markdown cells, coloured code, and the outputs and plots they saved.","items":[{"ext":"ipynb","name":"Jupyter notebook"}]},{"title":"Notes and text","note":"Documents written as text, shown as the page they describe.","items":[{"ext":"md","name":"Markdown, with its maths typeset"},{"ext":"markdown","name":"Markdown, with its maths typeset"},{"ext":"mdx","name":"Markdown, with its maths typeset"},{"ext":"tex","name":"LaTeX source"},{"ext":"sty","name":"LaTeX source"},{"ext":"html","name":"Saved web page"},{"ext":"htm","name":"Saved web page"},{"ext":"xhtml","name":"Saved web page"},{"ext":"eml","name":"Saved email"},{"ext":"txt","name":"Plain text"},{"ext":"text","name":"Plain text"},{"ext":"log","name":"Log file"},{"ext":"rst","name":"reStructuredText"},{"ext":"org","name":"Org mode"},{"ext":"adoc","name":"AsciiDoc"},{"ext":"asciidoc","name":"AsciiDoc"}]},{"title":"Code and config","note":"68 languages, each in its own colours.","items":[{"ext":"asm","name":"Assembly"},{"ext":"awk","name":"AWK"},{"ext":"bat","name":"Batch file"},{"ext":"c","name":"C"},{"ext":"h","name":"C"},{"ext":"cs","name":"C#"},{"ext":"cc","name":"C++"},{"ext":"cpp","name":"C++"},{"ext":"hpp","name":"C++"},{"ext":"clj","name":"Clojure"},{"ext":"cljs","name":"Clojure"},{"ext":"cmake","name":"CMake"},{"ext":"coffee","name":"CoffeeScript"},{"ext":"cfg","name":"Config (INI/TOML)"},{"ext":"conf","name":"Config (INI/TOML)"},{"ext":"ini","name":"Config (INI/TOML)"},{"ext":"toml","name":"Config (INI/TOML)"},{"ext":"cr","name":"Crystal"},{"ext":"css","name":"CSS"},{"ext":"dart","name":"Dart"},{"ext":"pas","name":"Delphi / Pascal"},{"ext":"diff","name":"Diff / patch"},{"ext":"patch","name":"Diff / patch"},{"ext":"dockerfile","name":"Dockerfile"},{"ext":"ex","name":"Elixir"},{"ext":"exs","name":"Elixir"},{"ext":"elm","name":"Elm"},{"ext":"erb","name":"ERB template"},{"ext":"erl","name":"Erlang"},{"ext":"fs","name":"F#"},{"ext":"fsx","name":"F#"},{"ext":"f90","name":"Fortran"},{"ext":"glsl","name":"GLSL shader"},{"ext":"go","name":"Go"},{"ext":"gradle","name":"Gradle"},{"ext":"gql","name":"GraphQL"},{"ext":"graphql","name":"GraphQL"},{"ext":"groovy","name":"Groovy"},{"ext":"haml","name":"Haml"},{"ext":"hbs","name":"Handlebars"},{"ext":"hs","name":"Haskell"},{"ext":"java","name":"Java"},{"ext":"js","name":"JavaScript"},{"ext":"jsx","name":"JavaScript"},{"ext":"mjs","name":"JavaScript"},{"ext":"json","name":"JSON"},{"ext":"jsonc","name":"JSON"},{"ext":"jl","name":"Julia"},{"ext":"kt","name":"Kotlin"},{"ext":"kts","name":"Kotlin"},{"ext":"less","name":"Less"},{"ext":"lisp","name":"Lisp"},{"ext":"lua","name":"Lua"},{"ext":"makefile","name":"Makefile"},{"ext":"mk","name":"Makefile"},{"ext":"nim","name":"Nim"},{"ext":"nix","name":"Nix"},{"ext":"ml","name":"OCaml"},{"ext":"pl","name":"Perl"},{"ext":"php","name":"PHP"},{"ext":"ps1","name":"PowerShell"},{"ext":"properties","name":"Properties"},{"ext":"proto","name":"Protocol Buffers"},{"ext":"py","name":"Python"},{"ext":"r","name":"R"},{"ext":"rb","name":"Ruby"},{"ext":"rs","name":"Rust"},{"ext":"scala","name":"Scala"},{"ext":"rkt","name":"Scheme / Racket"},{"ext":"scm","name":"Scheme / Racket"},{"ext":"scss","name":"SCSS"},{"ext":"bash","name":"Shell script"},{"ext":"env","name":"Shell script"},{"ext":"sh","name":"Shell script"},{"ext":"zsh","name":"Shell script"},{"ext":"sql","name":"SQL"},{"ext":"styl","name":"Stylus"},{"ext":"swift","name":"Swift"},{"ext":"sv","name":"SystemVerilog"},{"ext":"tcl","name":"Tcl"},{"ext":"twig","name":"Twig"},{"ext":"ts","name":"TypeScript"},{"ext":"tsx","name":"TypeScript"},{"ext":"vhd","name":"VHDL"},{"ext":"vim","name":"Vim script"},{"ext":"vb","name":"Visual Basic"},{"ext":"wat","name":"WebAssembly text"},{"ext":"svelte","name":"XML"},{"ext":"vue","name":"XML"},{"ext":"xml","name":"XML"},{"ext":"yaml","name":"YAML"},{"ext":"yml","name":"YAML"},{"ext":"Dockerfile","name":"Dockerfile"},{"ext":"Containerfile","name":"Dockerfile"},{"ext":"Makefile","name":"Makefile"},{"ext":".env","name":"Environment file"}]}],"notYet":{"doc":"Not yet. Open it in Word and save it as .docx, which opens.","xls":"Not yet. Save it as .xlsx in Excel, which opens.","ppt":"Not yet. Save it as .pptx in PowerPoint, which opens.","odt":"Not yet. Save it as .docx or .pdf.","ods":"Not yet. Save it as .xlsx or .csv.","odp":"Not yet. Save it as .pptx or .pdf.","rtf":"Not yet. Save it as .docx or .pdf.","pages":"Not yet. Export it from Pages as .docx or .pdf.","numbers":"Not yet. Export it from Numbers as .xlsx or .csv.","key":"Not yet. Export it from Keynote as .pptx or .pdf.","mobi":"Not yet. Calibre converts it to EPUB, which opens.","azw":"Not yet. Calibre converts it to EPUB, which opens.","azw3":"Not yet. Calibre converts it to EPUB, which opens.","kfx":"Not yet. Calibre converts it to EPUB, which opens.","djvu":"Not yet. Convert it to PDF, which opens.","cbr":"Not yet. Re-pack it as .cbz (a zip of the pages), which opens.","cb7":"Not yet. Re-pack it as .cbz (a zip of the pages), which opens.","heic":"Not yet. Save it as .jpg, which opens.","avif":"Not yet. Save it as .png or .jpg, which open.","mp3":"No: SynKitab reads books aloud itself, it does not play audio files.","m4b":"No: SynKitab reads books aloud itself, it does not play audiobook files."}};
+(function () {
+  var list = document.getElementById("list"), q = document.getElementById("q"), answer = document.getElementById("answer");
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function label(ext) { return /^[A-Z.]/.test(ext) ? ext : "." + ext; }
+  list.innerHTML = DATA.groups.map(function (g) {
+    return '<section class="kind"><h2>' + esc(g.title) + ' <span>' + g.items.length + '</span></h2><p>' + esc(g.note) +
+      '</p><div class="chips">' + g.items.map(function (i) {
+        return '<div class="chip" data-k="' + esc((i.ext + " " + i.name).toLowerCase()) + '"><code>' + esc(label(i.ext)) + '</code>' + esc(i.name) + '</div>';
+      }).join("") + '</div></section>';
+  }).join("");
+  var sections = list.querySelectorAll("section.kind");
+  function run() {
+    var raw = q.value.trim().toLowerCase(), ext = raw.replace(/^\./, "");
+    var exact = null, shown = 0;
+    sections.forEach(function (s) {
+      var any = false;
+      s.querySelectorAll(".chip").forEach(function (c) {
+        var k = c.getAttribute("data-k"), hit = !ext || k.indexOf(ext) >= 0;
+        if (k.split(" ")[0].replace(/^\./, "") === ext) exact = c;
+        c.hidden = !hit; if (hit) { any = true; shown++; }
+      });
+      s.hidden = !any;
+    });
+    answer.className = "answer";
+    if (!ext) { answer.textContent = ""; return; }
+    if (exact) {
+      answer.className = "answer yes";
+      answer.innerHTML = "<b>Yes.</b> SynKitab opens ." + esc(ext) + " (" + esc(exact.textContent.replace(exact.querySelector("code").textContent, "").trim()) + ").";
+    } else if (DATA.notYet[ext]) {
+      answer.innerHTML = "<b>." + esc(ext) + "</b>: " + esc(DATA.notYet[ext]);
+    } else if (!shown) {
+      answer.innerHTML = "<b>." + esc(ext) + "</b> is not on the list. SynKitab does not open it yet.";
+    } else {
+      answer.textContent = shown + (shown === 1 ? " match" : " matches");
+    }
+  }
+  q.addEventListener("input", run);
+  var start = new URLSearchParams(location.search).get("q");
+  if (start) { q.value = start; run(); }
+})();
+</script>
+</body>
+</html>

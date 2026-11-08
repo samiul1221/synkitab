@@ -5,23 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page not found · SynKitab</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0b0b0d">
+<meta name="theme-color" content="#10131a">
 <!-- Absolute paths throughout: GitHub Pages serves this for any missing
      path, including nested ones like /a/b/c, where "logo.png" would miss. -->
 <link rel="icon" href="/logo.png">
 <link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 :root{
-  --bg:#0b0b0d; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
-  --text:#ededeb; --muted:#a8a8a3; --faint:#8a8a85; --accent:#5b9bd9; --brand:#1357e0;
-  --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --bg:#10131a; --line:rgba(236,231,223,.08); --line2:rgba(236,231,223,.14);
+  --text:#ece7df; --muted:#a9a49b; --faint:#9a958c; --accent:#5b9bd9; --brand:#1357e0;
+  --serif:"Satoshi",system-ui,-apple-system,"Segoe UI",sans-serif; --sans:"Satoshi",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.glow{position:fixed;inset:-20% -10% auto;height:640px;pointer-events:none;
-  background:radial-gradient(520px 300px at 70% 30%,rgba(19,87,224,.32),transparent 70%),
-             radial-gradient(460px 260px at 20% 10%,rgba(91,155,217,.14),transparent 70%)}
+.glow{position:fixed;inset:0 0 auto;height:640px;pointer-events:none;
+  background:linear-gradient(180deg,#1e2636 0%,rgba(16,19,26,0) 100%),
+             radial-gradient(900px 320px at 50% 0%,rgba(91,155,217,.10),transparent 72%)}
 header{position:relative;border-bottom:1px solid var(--line)}
 header .wrap,main,footer .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 header .wrap{height:64px;display:flex;align-items:center}
@@ -29,13 +29,14 @@ header .wrap{height:64px;display:flex;align-items:center}
 .brand img{width:30px;height:30px;border-radius:8px}
 main{position:relative;flex:1;width:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-top:64px;padding-bottom:64px}
 .code{font-size:14px;color:var(--muted);border:1px solid var(--line2);border-radius:999px;padding:5px 12px;background:rgba(255,255,255,.03)}
-h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,7vw,76px);line-height:1.04;letter-spacing:-.025em;margin:20px 0 16px;text-wrap:balance}
-h1 em{font-style:italic;background:linear-gradient(100deg,#9cc4ff 0%,var(--accent) 45%,#2d6ff0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,7vw,76px);line-height:1.04;letter-spacing:-.025em;margin:20px 0 16px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
 p{color:var(--muted);font-size:clamp(16px,1.6vw,18.5px);max-width:40ch}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .btn{display:inline-flex;align-items:center;border-radius:999px;font-weight:600;font-size:15px;padding:12px 22px;transition:transform .15s ease,background .2s ease,border-color .2s}
 .btn:hover{transform:translateY(-1px)}
-.btn-primary{background:linear-gradient(180deg,#2d6ff0,var(--brand));color:#fff;box-shadow:0 8px 30px -8px rgba(19,87,224,.7)}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:#2a68e8}
 .btn-ghost{border:1px solid var(--line2);background:rgba(255,255,255,.03)}
 .btn-ghost:hover{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.06)}
 footer{position:relative;border-top:1px solid var(--line);padding:26px 0;color:var(--faint);font-size:13.5px}
