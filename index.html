@@ -24,7 +24,7 @@
 :root{
   --bg:#0b0b0d; --bg2:#111114; --card:#16161a; --card2:#1c1c21;
   --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
-  --text:#ededeb; --muted:#a8a8a3; --faint:#6f6f6a;
+  --text:#ededeb; --muted:#a8a8a3; --faint:#8a8a85;
   --accent:#5b9bd9; --brand:#1357e0; --paper:#faf8f3; --ink:#1a1a18;
   --r:18px; --maxw:1180px;
   --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -47,8 +47,8 @@ nav .wrap{display:flex;align-items:center;gap:28px;height:64px}
 .btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;font-weight:600;font-size:15px;padding:12px 22px;transition:transform .15s ease,background .2s ease,box-shadow .2s ease,border-color .2s}
 .btn:hover{transform:translateY(-1px)}
 .btn svg{width:18px;height:18px;flex:none}
-.btn-primary{background:linear-gradient(180deg,#2d6ff0,var(--brand));color:#fff;box-shadow:0 8px 30px -8px rgba(19,87,224,.7),inset 0 1px 0 rgba(255,255,255,.18)}
-.btn-primary:hover{box-shadow:0 12px 40px -8px rgba(19,87,224,.9),inset 0 1px 0 rgba(255,255,255,.22)}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:#2a68e8}
 .btn-ghost{border:1px solid var(--line2);color:var(--text);background:rgba(255,255,255,.03)}
 .btn-ghost:hover{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.06)}
 .btn-sm{padding:8px 16px;font-size:14px}
@@ -58,12 +58,11 @@ nav .wrap{display:flex;align-items:center;gap:28px;height:64px}
 .glow{position:absolute;inset:-20% -10% auto;height:760px;pointer-events:none;
   background:radial-gradient(600px 340px at 72% 30%,rgba(19,87,224,.35),transparent 70%),
              radial-gradient(520px 300px at 18% 10%,rgba(91,155,217,.16),transparent 70%)}
-.grain{position:absolute;inset:0;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .hero-grid{position:relative;display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);border:1px solid var(--line2);border-radius:999px;padding:6px 12px 6px 8px;background:rgba(255,255,255,.03)}
-.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 4px rgba(61,220,132,.15)}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:#3ddc84}
 h1{text-wrap:balance;font-family:var(--serif);font-weight:400;font-size:clamp(44px,6.2vw,84px);line-height:1.02;letter-spacing:-.025em;margin:22px 0 22px}
-h1 em{font-style:italic;background:linear-gradient(100deg,#9cc4ff 0%,var(--accent) 45%,#2d6ff0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 em{font-style:normal;color:var(--accent)}
 .lede{font-size:clamp(17px,1.6vw,19.5px);color:var(--muted);max-width:34ch}
 .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .meta{margin-top:18px;font-size:13px;color:var(--faint)}
@@ -72,9 +71,8 @@ h1 em{font-style:italic;background:linear-gradient(100deg,#9cc4ff 0%,var(--accen
 /* ---------------------------------------------------------- app mockup */
 .stage{position:relative;perspective:1600px}
 .window{position:relative;border-radius:14px;background:#121214;border:1px solid var(--line2);
-  box-shadow:0 50px 120px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4),0 30px 80px -40px rgba(19,87,224,.55);
-  transform:rotateY(-9deg) rotateX(4deg);transform-origin:left center;overflow:hidden;animation:float 9s ease-in-out infinite}
-@keyframes float{0%,100%{transform:rotateY(-9deg) rotateX(4deg) translateY(0)}50%{transform:rotateY(-7deg) rotateX(3deg) translateY(-8px)}}
+  box-shadow:0 50px 120px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4);
+  transform:rotateY(-9deg) rotateX(4deg);transform-origin:left center;overflow:hidden}
 .titlebar{display:flex;align-items:center;gap:8px;height:30px;padding:0 12px;background:#1a1a1d;font-size:11.5px;color:var(--muted)}
 .titlebar img{width:14px;height:14px;border-radius:3px}
 .titlebar .ctl{margin-left:auto;display:flex;gap:14px;color:var(--faint);letter-spacing:6px}
@@ -92,13 +90,11 @@ h1 em{font-style:italic;background:linear-gradient(100deg,#9cc4ff 0%,var(--accen
   box-shadow:0 10px 40px rgba(0,0,0,.5);animation:scroll 14s linear infinite}
 @keyframes scroll{0%{transform:translateY(0)}100%{transform:translateY(-230px)}}
 .page h4{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.15;margin-bottom:6px}
-.page .by{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#8a877e;margin-bottom:14px}
+.page .by{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#6b685f;margin-bottom:14px}
 .l{height:6px;border-radius:3px;background:#d9d5ca;margin:8px 0}
 .l.s{width:62%}.l.m{width:84%}
 .hl{background:linear-gradient(90deg,rgba(255,214,90,.75),rgba(255,214,90,.55));height:8px;border-radius:2px;margin:8px 0;width:78%}
 .anchor{position:absolute;left:46%;top:52%;width:30px;height:30px;border-radius:50%;background:rgba(250,248,243,.9);border:1px solid rgba(0,0,0,.2);display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.35)}
-.anchor::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(91,155,217,.6);animation:ping 2.2s ease-out infinite}
-@keyframes ping{0%{transform:scale(.7);opacity:1}100%{transform:scale(1.5);opacity:0}}
 .anchor svg{width:16px;height:16px;color:#333}
 .marks{border-left:1px solid var(--line);background:#141417;padding:14px 12px;font-size:11px}
 .marks b{display:block;font-size:12px;margin-bottom:10px}
@@ -118,10 +114,9 @@ h1 em{font-style:italic;background:linear-gradient(100deg,#9cc4ff 0%,var(--accen
 .lede mark{color:#f4f4f1;font-weight:500;background:linear-gradient(transparent 66%,rgba(91,155,217,.34) 66%,rgba(91,155,217,.34) 94%,transparent 94%);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 2px}
 .mark .sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
 .chip{position:absolute;display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;padding:9px 13px;border-radius:12px;background:rgba(22,22,26,.92);border:1px solid var(--line2);box-shadow:0 18px 40px -12px rgba(0,0,0,.8);backdrop-filter:blur(8px)}
-.chip.a{right:96px;top:-22px;animation:bob 6s ease-in-out infinite}
-.chip.b{left:-26px;bottom:14%;animation:bob 7s ease-in-out infinite reverse}
+.chip.a{right:96px;top:-22px}
+.chip.b{left:-26px;bottom:14%}
 .chip .g{width:8px;height:8px;border-radius:50%;background:#3ddc84}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
 /* ---------------------------------------------------------- platforms */
 .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
@@ -131,20 +126,20 @@ h1 em{font-style:italic;background:linear-gradient(100deg,#9cc4ff 0%,var(--accen
 
 /* ---------------------------------------------------------- sections */
 section{padding:110px 0;scroll-margin-top:64px}
-.kicker{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
 h2{text-wrap:balance;font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,56px);line-height:1.06;letter-spacing:-.02em;margin:14px 0 16px;max-width:18ch}
 .sub{color:var(--muted);font-size:18px;max-width:56ch}
 
 /* bento */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:54px}
-.cell{position:relative;overflow:hidden;border-radius:var(--r);background:linear-gradient(180deg,var(--card),#121215);border:1px solid var(--line);padding:28px;transition:border-color .25s,transform .25s}
-.cell:hover{border-color:var(--line2);transform:translateY(-2px)}
-.cell h3{font-size:19px;font-weight:600;letter-spacing:-.01em;margin:14px 0 8px}
+.cell{position:relative;overflow:hidden;border-radius:var(--r);background:linear-gradient(180deg,var(--card),#121215);border:1px solid var(--line);padding:28px;display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-content:start;align-items:center}
+.cell>p{grid-column:1/-1}
+.cell h3{font-size:19px;font-weight:600;letter-spacing:-.01em;margin:0}
+.cell h3+p{margin-top:8px}
 .cell p{color:var(--muted);font-size:15px}
-.ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(91,155,217,.1);border:1px solid rgba(91,155,217,.25);color:var(--accent)}
+.ic{display:grid;color:var(--accent)}
 .ic svg{width:21px;height:21px}
 .c4{grid-column:span 4}.c2{grid-column:span 2}.c3{grid-column:span 3}.c6{grid-column:span 6}
-.cell.feature{min-height:260px;background:radial-gradient(500px 220px at 90% 0%,rgba(19,87,224,.22),transparent 70%),linear-gradient(180deg,var(--card),#121215)}
+.cell.feature{min-height:260px}
 .devices{position:absolute;right:26px;bottom:-12px;display:flex;align-items:flex-end;gap:10px}
 .dv{border:1px solid var(--line2);background:#0f0f12;border-radius:10px;box-shadow:0 20px 40px -20px #000}
 .dv.pc{width:200px;height:120px}.dv.ph{width:56px;height:104px;border-radius:12px}
@@ -153,18 +148,16 @@ h2{text-wrap:balance;font-family:var(--serif);font-weight:400;font-size:clamp(34
 .dv .bar{height:3px;margin:6px 10px 0;border-radius:2px;background:linear-gradient(90deg,var(--accent) 62%,rgba(255,255,255,.1) 62%)}
 
 /* downloads */
-#download{background:radial-gradient(900px 400px at 50% 0%,rgba(19,87,224,.14),transparent 70%)}
 .dl{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px}
 /* Four cards need the full width; below it they pair up before stacking
    (the 980px rule further down). */
 @media (max-width:1140px){.dl{grid-template-columns:repeat(2,1fr)}}
 .card{position:relative;border-radius:22px;padding:30px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px;transition:border-color .25s,box-shadow .25s,transform .25s}
-.card:hover{transform:translateY(-3px);border-color:var(--line2)}
-.card.you{border-color:rgba(91,155,217,.55);box-shadow:0 0 0 1px rgba(91,155,217,.25),0 30px 70px -30px rgba(19,87,224,.6)}
+.card.you{border-color:rgba(91,155,217,.55)}
 .card .badge{position:absolute;top:18px;right:18px;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#0b0b0d;background:var(--accent);padding:4px 10px;border-radius:999px;display:none}
 .card.you .badge{display:block}
-.card .os{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--card2);border:1px solid var(--line2)}
-.card .os svg{width:24px;height:24px}
+.card .os{display:flex}
+.card .os svg{width:28px;height:28px}
 .card h3{font-size:22px;font-weight:600;letter-spacing:-.01em}
 .card p{color:var(--muted);font-size:14.5px;flex:1}
 .card ul{list-style:none;color:var(--faint);font-size:13px;display:grid;gap:4px}
@@ -184,7 +177,6 @@ h2{text-wrap:balance;font-family:var(--serif);font-weight:400;font-size:clamp(34
 
 /* about */
 #about{background:var(--paper);color:var(--ink)}
-#about .kicker{color:var(--brand)}
 #about .sub{color:#5a5a55}
 .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:start}
 .quote{font-family:var(--serif);font-size:clamp(24px,2.6vw,32px);line-height:1.3;letter-spacing:-.01em;margin-top:30px}
@@ -199,6 +191,7 @@ h2{text-wrap:balance;font-family:var(--serif);font-weight:400;font-size:clamp(34
 .final .ctas{justify-content:center}
 
 footer{border-top:1px solid var(--line);padding:34px 0;color:var(--faint);font-size:13.5px}
+.meta,.fine,footer,.pageno,.zoomchip,.eyebrow{font-variant-numeric:tabular-nums}
 footer .wrap{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center}
 footer .sp{margin-left:auto;display:flex;flex-wrap:wrap;gap:10px 22px}
 footer a:hover{color:var(--text)}
@@ -206,17 +199,10 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 
 /* ------------------------------------------------------------ formats */
 #formats{position:relative;overflow:hidden;padding-bottom:90px}
-#formats::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(700px 360px at 85% 8%,rgba(19,87,224,.18),transparent 70%),
-             radial-gradient(600px 320px at 5% 60%,rgba(61,220,132,.07),transparent 70%)}
-.proof{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-.proof span{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--text);border:1px solid var(--line2);border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.03)}
-.proof svg{width:16px;height:16px;color:#3ddc84}
 .fgrid{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:222px;gap:16px;margin-top:48px}
 .ft{position:relative;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);background:linear-gradient(180deg,var(--card),#111114);padding:18px 18px 0;display:flex;flex-direction:column;transition:border-color .3s,transform .3s,box-shadow .3s}
-.ft:hover{transform:translateY(-3px);border-color:var(--line2);box-shadow:0 30px 60px -30px rgba(0,0,0,.9)}
 .ft .tag{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.01em}
-.ft .tag i{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 7px;border-radius:6px;color:#0b0b0d}
+.ft .tag i{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 7px;border-radius:6px;color:#0b0b0d}
 .ft .say{color:var(--muted);font-size:13px;margin-top:4px}
 .ft .vis{flex:1;position:relative;margin-top:14px}
 .w2{grid-column:span 2}.w3{grid-column:span 3}.h2{grid-row:span 2}
@@ -233,7 +219,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 .doc table{width:100%;border-collapse:collapse;margin-top:12px}
 .doc td{border:1px solid #cfcabd;height:16px}
 .doc tr:first-child td{background:#dde6f4}
-.doc .hit{display:inline-block;height:9px;width:44px;border-radius:2px;background:#ffa726;box-shadow:0 0 0 3px rgba(255,167,38,.25);vertical-align:middle;animation:blink 2.4s ease-in-out infinite}
+.doc .hit{display:inline-block;height:9px;width:44px;border-radius:2px;background:#ffa726;vertical-align:middle;animation:blink 2.4s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.45}}
 .findpill{position:absolute;right:10%;top:-6px;z-index:2;display:flex;gap:8px;align-items:center;font-size:11.5px;background:rgba(22,22,26,.95);border:1px solid var(--line2);border-radius:10px;padding:6px 10px;box-shadow:0 14px 30px -10px #000}
 .findpill svg{width:13px;height:13px;color:var(--muted)}
@@ -247,8 +233,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 .xl .row>span:first-child{background:#1b1c20;color:var(--faint);text-align:center}
 .xl .row.th>span:not(:first-child){background:rgba(33,115,70,.28);color:#e8f5ec;font-weight:600}
 .xl .n{text-align:right;font-variant-numeric:tabular-nums}
-.xl .sel{outline:2px solid #3ddc84;outline-offset:-2px;animation:selpulse 3s ease-in-out infinite}
-@keyframes selpulse{0%,100%{box-shadow:inset 0 0 0 0 rgba(61,220,132,.0)}50%{box-shadow:inset 0 0 18px 0 rgba(61,220,132,.35)}}
+.xl .sel{outline:2px solid #3ddc84;outline-offset:-2px}
 .xl .sheets{position:absolute;left:0;right:0;bottom:0;display:flex;gap:6px;padding:6px 8px;background:#16171a;border-top:1px solid var(--line);font-size:10px}
 .xl .sheets span{padding:2px 9px;border-radius:999px;color:var(--muted);border:1px solid var(--line)}
 .xl .sheets span.on{background:rgba(33,115,70,.4);color:#fff;border-color:rgba(61,220,132,.5)}
@@ -256,7 +241,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 /* code */
 .code{position:absolute;inset:0 0 0;border-radius:10px 10px 0 0;background:#0d1117;border:1px solid var(--line2);padding:12px 12px 0 0;font:11.5px/1.7 ui-monospace,"Cascadia Code",Consolas,monospace;color:#c9d1d9;overflow:hidden}
 .code div{white-space:pre}
-.code u{text-decoration:none;display:inline-block;width:26px;text-align:right;margin-right:12px;color:#484f58}
+.code u{text-decoration:none;display:inline-block;width:26px;text-align:right;margin-right:12px;color:#7d8590}
 .k{color:#ff7b72}.s{color:#a5d6ff}.f{color:#d2a8ff}.c{color:#8b949e;font-style:italic}.nm{color:#79c0ff}
 .code .cursor{display:inline-block;width:7px;height:13px;background:#58a6ff;vertical-align:middle;animation:blink 1.1s steps(1) infinite}
 
@@ -320,14 +305,6 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 .more span{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text);border:1px solid var(--line2);border-radius:10px;padding:7px 11px;background:rgba(255,255,255,.03)}
 .more span i{font-style:normal;font:700 10px ui-monospace,Consolas,monospace;letter-spacing:.04em;padding:2px 6px;border-radius:5px;color:#0b0b0d}
 
-/* extension ribbon */
-.ribbon{position:relative;margin-top:42px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.ribbon .track{display:flex;gap:10px;width:max-content;animation:marquee 140s linear infinite}
-.ribbon:hover .track{animation-play-state:paused}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ribbon span{font:600 13px ui-monospace,Consolas,monospace;padding:7px 12px;border-radius:9px;border:1px solid var(--line2);background:rgba(255,255,255,.03);color:var(--muted);white-space:nowrap}
-.ribbon span.hot{color:#fff;border-color:rgba(91,155,217,.5);background:rgba(19,87,224,.14)}
-
 @media (max-width:980px){
   .fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .w3{grid-column:span 1}
@@ -340,10 +317,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
   .nb .cell{margin:2px 0 4px}.nb .plot{height:34px}
 }
 
-/* reveal */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
-.rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 /* responsive */
 /* A grid item will not shrink below its content by default, so one wide child
@@ -399,20 +373,20 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 </nav>
 
 <header class="hero" id="top">
-  <div class="glow"></div><div class="grain"></div>
+  <div class="glow"></div>
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow rv"><span class="dot"></span><span data-rel="headline">Now on Windows, Android, Linux and the web</span></span>
-      <h1 class="rv">Every book you own.<br><em>One library,</em> every device.</h1>
-      <p class="lede rv"><mark>Read any file</mark>, from PDFs and EPUBs to Word and comics. <mark>Listen like an audiobook</mark>. Then <mark>continue on any device</mark>, at the same line.</p>
-      <div class="ctas rv">
+      <span class="eyebrow"><span class="dot"></span><span data-rel="headline">Now on Windows, Android, Linux and the web</span></span>
+      <h1>Every book you own.<br><em>One library,</em> every device.</h1>
+      <p class="lede"><mark>Read any file</mark>, from PDFs and EPUBs to Word and comics. <mark>Listen like an audiobook</mark>. Then <mark>continue on any device</mark>, at the same line.</p>
+      <div class="ctas">
         <a class="btn btn-primary" id="hero-cta" href="#download"><svg><use href="#dl"/></svg><span>Download SynKitab</span></a>
         <a class="btn btn-ghost" href="https://reader.synkitab.com/"><svg><use href="#globe"/></svg>Read in the browser</a>
       </div>
-      <p class="meta rv">Free. <a href="#download">All downloads</a><span id="linux-help" hidden> · <a href="/linux.html">Installing on Linux</a></span><span id="windows-direct" hidden> · <a href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe">Direct download (.exe)</a></span></p>
+      <p class="meta">Free. <a href="#download">All downloads</a><span id="linux-help" hidden> · <a href="/linux.html">Installing on Linux</a></span><span id="windows-direct" hidden> · <a href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe">Direct download (.exe)</a></span></p>
     </div>
 
-    <div class="stage rv" aria-hidden="true">
+    <div class="stage" aria-hidden="true">
       <div class="window">
         <div class="titlebar"><img src="logo.png" alt="">SynKitab<span class="ctl">&#8212; &#9633; &#10005;</span></div>
         <div class="tabs">
@@ -447,7 +421,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         </div>
       </div>
       <div class="chip a"><span class="g"></span>Synced to your phone, page 48</div>
-      <div class="chip b">&#10024; Picked up where you left off</div>
+      <div class="chip b"><span class="g"></span>Picked up where you left off</div>
     </div>
   </div>
 </header>
@@ -457,30 +431,22 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
     <span><svg><use href="#win"/></svg>Windows 10 &amp; 11</span>
     <span><svg><use href="#droid"/></svg>Android 7 and up</span>
     <span><svg><use href="#globe"/></svg>Any modern browser</span>
-    <span>PDF · EPUB · Word · Excel · PowerPoint · Markdown · Images · Code · Comics</span>
   </div>
 </div>
 
 <section id="formats">
   <div class="wrap">
-    <div class="kicker rv">Every format</div>
-    <h2 class="rv">Open anything. It opens as itself.</h2>
-    <p class="sub rv">Word documents as pages, spreadsheets as sheets, slides at their own layout, Markdown with its maths typeset, notebooks with their plots, code with its colours, comics a page at a time or as one long scrolling strip for webtoons and manhwa. Nothing is converted on the way in and nothing is uploaded to read it, so a file opens the instant you tap it, even offline.</p>
-    <div class="proof rv">
-      <span><svg width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 10 17 19 7"/></svg>No conversion, no waiting</span>
-      <span><svg width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 10 17 19 7"/></svg>Works offline</span>
-      <span><svg width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 10 17 19 7"/></svg>Find and zoom in every file</span>
-      <span><svg width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 10 17 19 7"/></svg>"Open with" on Windows and Android</span>
-    </div>
+    <h2>Open anything. It opens as itself.</h2>
+    <p class="sub">Word documents as pages, spreadsheets as sheets, slides at their own layout, Markdown with its maths typeset, notebooks with their plots, code with its colours, comics a page at a time or as one long scrolling strip for webtoons and manhwa. Nothing is converted on the way in and nothing is uploaded to read it, so a file opens the instant you tap it, even offline.</p>
 
     <div class="fgrid">
-      <div class="ft w2 rv">
-        <div class="tag"><i style="background:#e5534b;color:#fff">PDF</i><i style="background:#5b9bd9">EPUB</i>Books, with everything you mark</div>
+      <div class="ft w2">
+        <div class="tag"><i style="background:#e5534b;color:#0b0b0d">PDF</i><i style="background:#5b9bd9">EPUB</i>Books, with everything you mark</div>
         <div class="say">Highlights, notes, bookmarks and your place, synced to every device.</div>
         <div class="vis"><div class="duo"><span></span><span></span></div></div>
       </div>
 
-      <div class="ft w2 h2 rv">
+      <div class="ft w2 h2">
         <div class="tag"><i style="background:#2b579a;color:#fff">DOCX</i>Word documents</div>
         <div class="say">Headings, lists, tables, pictures and links, laid out as the page it was written on.</div>
         <div class="vis">
@@ -497,7 +463,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         </div>
       </div>
 
-      <div class="ft w2 rv">
+      <div class="ft w2">
         <div class="tag"><i style="background:#217346;color:#fff">XLSX</i>Excel workbooks</div>
         <div class="say">Every sheet, frozen rows and Excel's own number formats.</div>
         <div class="vis">
@@ -511,8 +477,8 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         </div>
       </div>
 
-      <div class="ft w2 rv">
-        <div class="tag"><i style="background:#d24726;color:#fff">PPTX</i>PowerPoint decks</div>
+      <div class="ft w2">
+        <div class="tag"><i style="background:#bf3f1f;color:#fff">PPTX</i>PowerPoint decks</div>
         <div class="say">Every slide at its own layout, with the deck's colours, pictures and tables.</div>
         <div class="vis">
           <div class="slide">
@@ -526,12 +492,12 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         </div>
       </div>
 
-      <div class="ft rv">
+      <div class="ft">
         <div class="tag"><i style="background:#e3b341">IMG</i>Pictures, scans and SVG</div>
         <div class="vis"><div class="photo"></div><div class="zoomchip">250%</div></div>
       </div>
 
-      <div class="ft rv">
+      <div class="ft">
         <div class="tag"><i style="background:#c9d1d9">MD</i>Markdown and LaTeX</div>
         <div class="vis">
           <div class="mdv">
@@ -542,14 +508,14 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         </div>
       </div>
 
-      <div class="ft rv">
+      <div class="ft">
         <div class="tag"><i style="background:#3ddc84">CSV</i>Tables</div>
         <div class="vis">
           <div class="csv"><b>name,qty,price</b><br>apples,12,<span class="q">"1,200"</span><br>pears,7,640<br>plums,31,<span class="q">"2,050"</span></div>
         </div>
       </div>
 
-      <div class="ft rv">
+      <div class="ft">
         <div class="tag"><i style="background:#8957e5;color:#fff">CODE</i>70 languages</div>
         <div class="vis">
           <div class="code">
@@ -561,8 +527,8 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         </div>
       </div>
 
-      <div class="ft w2 rv">
-        <div class="tag"><i style="background:#f37626;color:#fff">IPYNB</i>Jupyter notebooks</div>
+      <div class="ft w2">
+        <div class="tag"><i style="background:#f37626;color:#0b0b0d">IPYNB</i>Jupyter notebooks</div>
         <div class="say">Markdown cells, coloured code, and the outputs and plots it saved.</div>
         <div class="vis">
           <div class="nb">
@@ -572,82 +538,80 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         </div>
       </div>
 
-      <div class="ft rv">
-        <div class="tag"><i style="background:#ff5ca8;color:#fff">CBZ</i>Comics</div>
+      <div class="ft">
+        <div class="tag"><i style="background:#ff5ca8;color:#0b0b0d">CBZ</i>Comics</div>
         <div class="vis">
           <div class="comic"><span></span><span></span><span></span></div>
           <div class="pageno">7 / 212</div>
         </div>
       </div>
 
-      <div class="ft w3 rv">
+      <div class="ft w3">
         <div class="tag"><i style="background:#5b9bd9">+</i>And the rest</div>
         <div class="say">Each shown as itself, its source a tap away where it has one.</div>
         <div class="vis">
           <div class="more">
-            <span><i style="background:#e5534b;color:#fff">HTML</i>Saved web pages</span>
-            <span><i style="background:#9b6bff;color:#fff">FB2</i>FictionBook e-books</span>
+            <span><i style="background:#e5534b;color:#0b0b0d">HTML</i>Saved web pages</span>
+            <span><i style="background:#9b6bff;color:#0b0b0d">FB2</i>FictionBook e-books</span>
             <span><i style="background:#e3b341">EML</i>Saved emails</span>
             <span><i style="background:#3ddc84">SVG</i>Vector pictures</span>
             <span><i style="background:#58a6ff">TEX</i>LaTeX source</span>
-            <span><i style="background:#2496ed;color:#fff">DOCKER</i>Dockerfiles and .env</span>
+            <span><i style="background:#2496ed;color:#0b0b0d">DOCKER</i>Dockerfiles and .env</span>
             <span><i style="background:#c9d1d9">TXT</i>Text, logs, reStructuredText, Org</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="ribbon rv" aria-label="Supported file types"><div class="track"><span class="hot">.pdf</span><span class="hot">.epub</span><span class="hot">.docx</span><span class="hot">.xlsx</span><span class="hot">.pptx</span><span class="hot">.md</span><span class="">.jpg</span><span class="hot">.png</span><span class="">.txt</span><span class="hot">.csv</span><span class="hot">.ipynb</span><span class="hot">.html</span><span class="hot">.py</span><span class="">.js</span><span class="">.json</span><span class="">.svg</span><span class="hot">.cbz</span><span class="">.tex</span><span class="">.text</span><span class="">.log</span><span class="">.rst</span><span class="">.org</span><span class="">.adoc</span><span class="">.asciidoc</span><span class="">.eml</span><span class="">.mjs</span><span class="">.jsx</span><span class="">.ts</span><span class="">.tsx</span><span class="">.java</span><span class="">.kt</span><span class="">.kts</span><span class="">.c</span><span class="">.h</span><span class="">.cpp</span><span class="">.cc</span><span class="">.hpp</span><span class="">.cs</span><span class="">.go</span><span class="">.rs</span><span class="">.rb</span><span class="">.php</span><span class="">.swift</span><span class="">.dart</span><span class="">.scala</span><span class="">.lua</span><span class="">.r</span><span class="">.pl</span><span class="">.hs</span><span class="">.ex</span><span class="">.exs</span><span class="">.sh</span><span class="">.bash</span><span class="">.zsh</span><span class="">.ps1</span><span class="">.bat</span><span class="">.sql</span><span class="">.yaml</span><span class="">.yml</span><span class="">.toml</span><span class="">.ini</span><span class="">.xml</span><span class="">.css</span><span class="">.scss</span><span class="">.less</span><span class="">.styl</span><span class="">.htm</span><span class="">.xhtml</span><span class="">.vue</span><span class="">.svelte</span><span class="">.fb2</span><span class="">.sty</span><span class="">.gradle</span><span class="">.groovy</span><span class="">Dockerfile</span><span class="">Makefile</span><span class="">.mk</span><span class="">.cmake</span><span class="">.env</span><span class="">.properties</span><span class="">.cfg</span><span class="">.conf</span><span class="">.jsonc</span><span class="">.jl</span><span class="">.nim</span><span class="">.nix</span><span class="">.elm</span><span class="">.erl</span><span class="">.clj</span><span class="">.cljs</span><span class="">.fs</span><span class="">.fsx</span><span class="">.ml</span><span class="">.proto</span><span class="">.graphql</span><span class="">.gql</span><span class="">.vim</span><span class="">.coffee</span><span class="">.pas</span><span class="">.vb</span><span class="">.f90</span><span class="">.sv</span><span class="">.vhd</span><span class="">.asm</span><span class="">.tcl</span><span class="">.cr</span><span class="">.diff</span><span class="">.patch</span><span class="">.awk</span><span class="">.glsl</span><span class="">.wat</span><span class="">.lisp</span><span class="">.scm</span><span class="">.rkt</span><span class="">.hbs</span><span class="">.twig</span><span class="">.erb</span><span class="">.haml</span><span class="">.markdown</span><span class="">.mdx</span><span class="">.tsv</span><span class="">.jpeg</span><span class="">.webp</span><span class="">.gif</span><span class="">.bmp</span><span class="">.tif</span><span class="">.tiff</span><span class="">.cbt</span><span class="hot">.pdf</span><span class="hot">.epub</span><span class="hot">.docx</span><span class="hot">.xlsx</span><span class="hot">.pptx</span><span class="hot">.md</span><span class="">.jpg</span><span class="hot">.png</span><span class="">.txt</span><span class="hot">.csv</span><span class="hot">.ipynb</span><span class="hot">.html</span><span class="hot">.py</span><span class="">.js</span><span class="">.json</span><span class="">.svg</span><span class="hot">.cbz</span><span class="">.tex</span><span class="">.text</span><span class="">.log</span><span class="">.rst</span><span class="">.org</span><span class="">.adoc</span><span class="">.asciidoc</span><span class="">.eml</span><span class="">.mjs</span><span class="">.jsx</span><span class="">.ts</span><span class="">.tsx</span><span class="">.java</span><span class="">.kt</span><span class="">.kts</span><span class="">.c</span><span class="">.h</span><span class="">.cpp</span><span class="">.cc</span><span class="">.hpp</span><span class="">.cs</span><span class="">.go</span><span class="">.rs</span><span class="">.rb</span><span class="">.php</span><span class="">.swift</span><span class="">.dart</span><span class="">.scala</span><span class="">.lua</span><span class="">.r</span><span class="">.pl</span><span class="">.hs</span><span class="">.ex</span><span class="">.exs</span><span class="">.sh</span><span class="">.bash</span><span class="">.zsh</span><span class="">.ps1</span><span class="">.bat</span><span class="">.sql</span><span class="">.yaml</span><span class="">.yml</span><span class="">.toml</span><span class="">.ini</span><span class="">.xml</span><span class="">.css</span><span class="">.scss</span><span class="">.less</span><span class="">.styl</span><span class="">.htm</span><span class="">.xhtml</span><span class="">.vue</span><span class="">.svelte</span><span class="">.fb2</span><span class="">.sty</span><span class="">.gradle</span><span class="">.groovy</span><span class="">Dockerfile</span><span class="">Makefile</span><span class="">.mk</span><span class="">.cmake</span><span class="">.env</span><span class="">.properties</span><span class="">.cfg</span><span class="">.conf</span><span class="">.jsonc</span><span class="">.jl</span><span class="">.nim</span><span class="">.nix</span><span class="">.elm</span><span class="">.erl</span><span class="">.clj</span><span class="">.cljs</span><span class="">.fs</span><span class="">.fsx</span><span class="">.ml</span><span class="">.proto</span><span class="">.graphql</span><span class="">.gql</span><span class="">.vim</span><span class="">.coffee</span><span class="">.pas</span><span class="">.vb</span><span class="">.f90</span><span class="">.sv</span><span class="">.vhd</span><span class="">.asm</span><span class="">.tcl</span><span class="">.cr</span><span class="">.diff</span><span class="">.patch</span><span class="">.awk</span><span class="">.glsl</span><span class="">.wat</span><span class="">.lisp</span><span class="">.scm</span><span class="">.rkt</span><span class="">.hbs</span><span class="">.twig</span><span class="">.erb</span><span class="">.haml</span><span class="">.markdown</span><span class="">.mdx</span><span class="">.tsv</span><span class="">.jpeg</span><span class="">.webp</span><span class="">.gif</span><span class="">.bmp</span><span class="">.tif</span><span class="">.tiff</span><span class="">.cbt</span></div></div>
   </div>
 </section>
 
 <section id="features">
   <div class="wrap">
-    <div class="kicker rv">What it does</div>
-    <h2 class="rv">A reader that remembers everything.</h2>
-    <p class="sub rv">Built for people with a few hundred PDFs and a phone, a laptop, and a browser tab they keep losing books between.</p>
+    <h2>Read it, hear it, and keep your place everywhere.</h2>
+    <p class="sub">Built for people with a few hundred PDFs and a phone, a laptop, and a browser tab they keep losing books between.</p>
 
     <div class="bento">
-      <div class="cell feature c4 rv">
+      <div class="cell c6">
+        <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H4zM17 14h3v6h-3z"/></svg></div>
+        <h3>Listen like an audiobook</h3>
+        <p style="max-width:68ch">Any PDF or EPUB, read aloud. Download natural voices that work with no internet, pick a mood like Thriller, Horror, Calm or Study, and follow along word by word with a sleep timer and background play. Scanned pages can be read too.</p>
+      </div>
+      <div class="cell feature c4">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"/></svg></div>
         <h3>Your place follows you</h3>
         <p style="max-width:34ch">Reading position, highlights, notes and bookmarks sync across devices. Offline, it keeps them on the device and sends them when you're back online.</p>
         <div class="devices"><div class="dv pc"><div class="bar"></div><div class="pg"></div></div><div class="dv ph"><div class="bar"></div><div class="pg"></div></div></div>
       </div>
-      <div class="cell c2 rv">
+      <div class="cell c2">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M3 6h7l2 2h9v11H3z"/></svg></div>
         <h3>Tabs, like a browser</h3>
         <p>Keep several books open and switch instantly. "Open with" from Explorer drops a book into a new tab.</p>
       </div>
-      <div class="cell c2 rv">
+      <div class="cell c2">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 4h10l4 4v12H5zM14 4v5h5M8 13h8M8 17h5"/></svg></div>
         <h3>PDF and real EPUB</h3>
         <p>EPUBs reflow as ebooks, with chapters and adjustable type. They aren't flattened into PDFs.</p>
       </div>
-      <div class="cell c2 rv">
+      <div class="cell c2">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 4h16v16H4zM4 9h16M9 9v11"/></svg></div>
         <h3>Notion to book</h3>
         <p>Paste a Notion link and get a typeset PDF, subpages and all. Import it again later to pull in your latest edits.</p>
       </div>
-      <div class="cell c2 rv">
+      <div class="cell c2">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 20h4L19 9l-4-4L4 16zM13 7l4 4"/></svg></div>
         <h3>Edit Arena</h3>
         <p>Reorder, rotate, crop, merge and split pages. Every edit is a new version, so you can always go back.</p>
       </div>
-      <div class="cell c3 rv">
+      <div class="cell c3">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm6.5-6a3 3 0 0 1 0 6M3 20c.7-3 3.2-5 6-5s5.3 2 6 5m1.5-4.8c2.2.4 3.9 2.1 4.5 4.8"/></svg></div>
         <h3>Friends and shared shelves</h3>
         <p>Send a book to a friend, see what they're reading, and keep private shelves private.</p>
       </div>
-      <div class="cell c3 rv">
+      <div class="cell c3">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 3a9 9 0 1 0 9 9c-5 1-10-4-9-9z"/></svg></div>
         <h3>Seven reading themes</h3>
         <p>Paper, Sepia, Ink, Midnight and more. Page tints for night reading, focus mode, middle-click autoscroll and find in the toolbar.</p>
-      </div>
-      <div class="cell c6 rv">
-        <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H4zM17 14h3v6h-3z"/></svg></div>
-        <h3>Listen like an audiobook</h3>
-        <p style="max-width:68ch">Any PDF or EPUB, read aloud. Download natural voices that work with no internet, pick a mood like Thriller, Horror, Calm or Study, and follow along word by word with a sleep timer and background play. Scanned pages can be read too.</p>
       </div>
     </div>
   </div>
@@ -655,54 +619,52 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
 
 <section id="clubs">
   <div class="wrap">
-    <div class="kicker rv">Read together</div>
-    <h2 class="rv">Book clubs, without the spoilers.</h2>
-    <p class="sub rv">Start a club with friends or join a public one. Read the same books, see where everyone is, and talk chapter by chapter. Nothing past your page is ever shown to you.</p>
+    <h2>Book clubs, without the spoilers.</h2>
+    <p class="sub">Start a club with friends or join a public one. Read the same books, see where everyone is, and talk chapter by chapter. Nothing past your page is ever shown to you.</p>
 
     <div class="bento">
-      <div class="cell feature c4 rv">
+      <div class="cell c4">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 5h6v14H4zM14 5h6v14h-6M7 9h0M17 9h0"/></svg></div>
         <h3>Many books, in order</h3>
         <p style="max-width:40ch">A club reads one book now, lines up the next, and keeps the finished ones. Series stay together, from book one to seven, each with its own talk.</p>
       </div>
-      <div class="cell c2 rv">
+      <div class="cell c2">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M6 10V8a6 6 0 0 1 12 0v2M5 10h14v10H5z"/></svg></div>
         <h3>Spoiler-safe by design</h3>
         <p>Tell the club how far you've read. Chapters, posts and reactions past that point stay locked until you get there.</p>
       </div>
-      <div class="cell c2 rv">
+      <div class="cell c3">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 5h16v11H9l-5 4z"/></svg></div>
         <h3>Chat by chapter</h3>
         <p>A room for the whole club, for each series, for each book and for every chapter. React to the chapters that wrecked you.</p>
       </div>
-      <div class="cell c2 rv">
+      <div class="cell c3">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 3v18M5 8l7-5 7 5M5 16h14"/></svg></div>
         <h3>Debate, don't just comment</h3>
         <p>Hot takes, theories that get settled, character vs character, book vs book. Vote, argue a side, switch if you're convinced.</p>
       </div>
-      <div class="cell c3 rv">
+      <div class="cell c3">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M5 4h14v16l-7-4-7 4z"/></svg></div>
         <h3>Everyone's highlights, if you want them</h3>
         <p>Members' highlights and notes gather in one place. Your book stays clean, unless you choose to see everyone's colours or just a few people's.</p>
       </div>
-      <div class="cell c3 rv">
+      <div class="cell c3">
         <div class="ic"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 6h16v12H4zM8 10h5M8 14h8"/></svg></div>
         <h3>Your reader card</h3>
         <p>Characters loved and hated, hot takes, favourite trope, reading personality and badges. Share it as a picture.</p>
       </div>
     </div>
-    <p class="fine rv" style="margin-top:18px">Private clubs share books only when their organisers confirm they have the right to, and can keep them inside the app. Public clubs share conversation, never files.</p>
+    <p class="fine" style="margin-top:18px">Private clubs share books only when their organisers confirm they have the right to, and can keep them inside the app. Public clubs share conversation, never files.</p>
   </div>
 </section>
 
 <section id="download">
   <div class="wrap">
-    <div class="kicker rv" style="text-align:center">Download</div>
-    <h2 class="rv" style="margin-left:auto;margin-right:auto;text-align:center">Get SynKitab on every screen you read on.</h2>
-    <p class="sub rv" style="margin:0 auto;text-align:center">Sign in once and your library is waiting in every one of them.</p>
+    <h2 style="margin-left:auto;margin-right:auto;text-align:center">Get SynKitab on every screen you read on.</h2>
+    <p class="sub" style="margin:0 auto;text-align:center">Sign in once and your library is waiting in every one of them.</p>
 
     <div class="dl">
-      <div class="card rv" data-os="windows">
+      <div class="card" data-os="windows">
         <span class="badge">For this device</span>
         <div class="os"><svg style="color:#4ea8ff"><use href="#win"/></svg></div>
         <h3>Windows</h3>
@@ -711,7 +673,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         <p class="alts"><a href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-Setup.exe">Direct download (.exe)</a></p>
         <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9N33KGTDQC4P"><svg><use href="#dl"/></svg>Get it from the Microsoft Store</a>
       </div>
-      <div class="card rv" data-os="android">
+      <div class="card" data-os="android">
         <span class="badge">For this device</span>
         <div class="os"><svg style="color:#3ddc84"><use href="#droid"/></svg></div>
         <h3>Android</h3>
@@ -719,7 +681,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         <ul><li>Android 7.0 or newer</li><li data-rel="apk-size">A single APK</li><li>Opens 120+ file types from any app</li></ul>
         <a class="btn btn-primary" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab.apk"><svg><use href="#dl"/></svg>Download the APK</a>
       </div>
-      <div class="card rv" data-os="linux">
+      <div class="card" data-os="linux">
         <span class="badge">For this device</span>
         <div class="os"><svg style="color:#e9b949"><use href="#linux"/></svg></div>
         <h3>Linux</h3>
@@ -728,7 +690,7 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         <p class="alts"><a href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab_amd64.deb">Get the .deb</a> <span>·</span> <a href="/linux.html">How to install</a></p>
         <a class="btn btn-primary" href="https://github.com/samiul1221/synkitab/releases/latest/download/SynKitab-x86_64.AppImage"><svg><use href="#dl"/></svg>Download the AppImage</a>
       </div>
-      <div class="card rv" data-os="web">
+      <div class="card" data-os="web">
         <span class="badge">For this device</span>
         <div class="os"><svg style="color:var(--accent)"><use href="#globe"/></svg></div>
         <h3>Web</h3>
@@ -737,33 +699,32 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
         <a class="btn btn-ghost" href="https://reader.synkitab.com/">Open the web reader <svg><use href="#arrow"/></svg></a>
       </div>
     </div>
-    <p class="fine rv"><span data-rel="line"></span><a href="https://github.com/samiul1221/synkitab/releases">All releases and changelog</a></p>
+    <p class="fine"><span data-rel="line"></span><a href="https://github.com/samiul1221/synkitab/releases">All releases and changelog</a></p>
   </div>
 </section>
 
 <section id="about">
   <div class="wrap about-grid">
     <div>
-      <div class="kicker rv">About</div>
-      <h2 class="rv">Made for reading, not for scrolling past.</h2>
-      <p class="sub rv">SynKitab started as a way to stop losing books between devices. It grew into a reader that typesets Notion pages, reflows EPUBs, lets you edit pages safely, and keeps your place across a phone, a PC and a browser.</p>
-      <p class="quote rv">"Kitab" is Arabic, Urdu and Hindi for <em>book</em>. The rest is sync.</p>
-      <p class="rv" style="margin-top:22px;color:#5a5a55;font-size:15px">Designed and built by <b style="color:var(--ink)">Samiul Seikh</b> · <a href="https://www.linkedin.com/in/samiul-seikh-3b62082b7/" rel="author noopener" target="_blank" style="color:var(--brand);font-weight:600;text-decoration:underline;text-underline-offset:3px">LinkedIn</a> · <a href="https://github.com/samiul1221" rel="noopener" target="_blank" style="color:var(--brand);font-weight:600;text-decoration:underline;text-underline-offset:3px">GitHub</a></p>
+      <h2>Made for reading, not for scrolling past.</h2>
+      <p class="sub">SynKitab started as a way to stop losing books between devices. It grew into a reader that typesets Notion pages, reflows EPUBs, lets you edit pages safely, and keeps your place across a phone, a PC and a browser.</p>
+      <p class="quote">"Kitab" is Arabic, Urdu and Hindi for <em>book</em>. The rest is sync.</p>
+      <p style="margin-top:22px;color:#5a5a55;font-size:15px">Designed and built by <b style="color:var(--ink)">Samiul Seikh</b> · <a href="https://www.linkedin.com/in/samiul-seikh-3b62082b7/" rel="author noopener" target="_blank" style="color:var(--brand);font-weight:600;text-decoration:underline;text-underline-offset:3px">LinkedIn</a> · <a href="https://github.com/samiul1221" rel="noopener" target="_blank" style="color:var(--brand);font-weight:600;text-decoration:underline;text-underline-offset:3px">GitHub</a></p>
     </div>
     <div class="facts">
-      <div class="fact rv"><b>Your books stay yours</b><span>Files on your device stay on your device unless you choose to sync them. Each account can only see its own library.</span></div>
-      <div class="fact rv"><b>Your Notion token never leaves your device</b><span>It's sent with each conversion and never stored on the server.</span></div>
-      <div class="fact rv"><b>Delete everything, any time</b><span>Deleting your account in Settings removes your books, notes and history from the server.</span></div>
-      <div class="fact rv"><b>Works offline</b><span>Downloaded books open without a connection. Your place syncs when you're back online.</span></div>
+      <div class="fact"><b>Your books stay yours</b><span>Files on your device stay on your device unless you choose to sync them. Each account can only see its own library.</span></div>
+      <div class="fact"><b>Your Notion token never leaves your device</b><span>It's sent with each conversion and never stored on the server.</span></div>
+      <div class="fact"><b>Delete everything, any time</b><span>Deleting your account in Settings removes your books, notes and history from the server.</span></div>
+      <div class="fact"><b>Works offline</b><span>Downloaded books open without a connection. Your place syncs when you're back online.</span></div>
     </div>
   </div>
 </section>
 
 <section class="final">
   <div class="wrap">
-    <h2 class="rv">Pick up where you left off.</h2>
-    <p class="sub rv" style="margin:0 auto">On whatever's in your hand.</p>
-    <div class="ctas rv">
+    <h2>Pick up where you left off.</h2>
+    <p class="sub" style="margin:0 auto">On whatever's in your hand.</p>
+    <div class="ctas">
       <a class="btn btn-primary" id="final-cta" href="#download"><svg><use href="#dl"/></svg><span>Download SynKitab</span></a>
       <a class="btn btn-ghost" href="https://reader.synkitab.com/">Open web reader</a>
     </div>
@@ -907,14 +868,6 @@ footer .legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 22px;font-siz
     })
     .catch(function () {});
 
-  // Reveal on scroll.
-  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
-    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, { threshold: 0.12 }) : null;
-  document.querySelectorAll(".rv").forEach(function (el, i) {
-    el.style.transitionDelay = Math.min(i % 6, 5) * 60 + "ms";
-    if (io) io.observe(el); else el.classList.add("in");
-  });
 })();
 </script>
 </body>
