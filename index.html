@@ -60,10 +60,15 @@ nav .wrap{display:flex;align-items:center;gap:28px;height:64px}
      screen in a dark room, a cooler light high on the left, and a deep sky
      that settles into the page. Every layer fades inside the hero, so it
      meets the band below without an edge. */
-  background:radial-gradient(58% 68% at 74% 50%,rgba(56,112,210,.30),transparent 70%),
-             radial-gradient(42% 55% at 10% 6%,rgba(91,155,217,.15),transparent 70%),
-             radial-gradient(70% 38% at 52% 0%,rgba(150,186,232,.08),transparent 70%),
-             linear-gradient(180deg,#172036 0%,#121827 58%,var(--bg) 100%)}
+  background:radial-gradient(42% 62% at 70% 50%,rgba(19,87,224,.46),transparent 68%),
+             radial-gradient(64% 80% at 74% 52%,rgba(56,112,210,.18),transparent 72%),
+             radial-gradient(40% 55% at 8% 0%,rgba(91,155,217,.20),transparent 70%),
+             linear-gradient(180deg,#131a2b 0%,#10141f 62%,var(--bg) 100%)}
+/* A fine grain over the light, as on a photograph: smooth gradients band
+   into visible steps on most screens, and the grain is what keeps them
+   reading as light rather than as a flat fill. */
+.glow::after{content:"";position:absolute;inset:0;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .hero-grid{position:relative;display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center}
 h1{text-wrap:balance;font-family:var(--serif);font-weight:500;font-size:clamp(44px,6.2vw,84px);line-height:1.02;letter-spacing:-.035em;margin:22px 0 22px}
 h1 em{font-style:normal;color:var(--accent)}
