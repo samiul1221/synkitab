@@ -55,6 +55,17 @@ h3{font-size:15px;font-weight:600;margin:28px 0 12px}
 .meter i{display:block;height:100%;background:var(--accent);border-radius:3px}
 .meter.warn i{background:#e9b872}.meter.full i{background:var(--bad)}
 td.n{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;padding-left:12px}
+.reports{display:grid;gap:12px}
+.rep{border-top:1px solid var(--line);padding:12px 0}
+.rep:first-of-type{border-top:0;padding-top:0}
+.rep .who{display:flex;flex-wrap:wrap;gap:6px 12px;color:var(--muted);font-size:13px;margin-bottom:6px}
+.rep .who b{color:var(--text);font-weight:600}
+.rep .msg{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14.5px}
+.rep .ev{margin-top:8px;padding-left:10px;border-left:2px solid var(--line2);color:var(--muted);font-size:13.5px;white-space:pre-wrap;overflow-wrap:anywhere}
+.tag{display:inline-block;border:1px solid var(--line2);border-radius:999px;padding:0 8px;font-size:12px}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button.on{background:var(--brand);border-color:var(--brand)}
+.reports-box{max-height:640px;overflow:auto}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -94,6 +105,15 @@ td.n{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;paddi
       <div class="card"><h2>Largest tables</h2><table id="t-tables"></table></div>
       <div class="card"><h2>What is stored</h2><table id="t-counts"></table></div>
       <div class="card"><h2>Waiting and reported</h2><table id="t-queues"></table></div>
+    </div>
+    <h3>Reports</h3>
+    <div class="card">
+      <div class="tabs" id="rep-tabs">
+        <button data-k="bugs" class="on">Bug reports</button>
+        <button data-k="chats">Chat reports</button>
+        <button data-k="clubs">Club reports</button>
+      </div>
+      <div class="reports-box" id="reports"></div>
     </div>
     <footer id="foot"></footer>
   </main>

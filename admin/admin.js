@@ -130,6 +130,72 @@ function kpi2(k, v, s) {
   $('db-kpis').append(c);
 }
 
+// Everything reported: bugs (whoever sent them, and the email they left),
+// chats (with the messages the reporter chose to show), and clubs. Set as
+// text, never as markup: every word here was typed by a user.
+let reports = { bugs: [], chats: [], clubs: [] };
+let reportKind = 'bugs';
+const when = d => new Date(d).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+
+function showReports() {
+  const box = $('reports');
+  box.replaceChildren();
+  for (const b of document.querySelectorAll('#rep-tabs button')) {
+    b.classList.toggle('on', b.dataset.k === reportKind);
+    const n = (reports[b.dataset.k] || []).length;
+    b.textContent = b.textContent.replace(/ \(\d+\)$/, '') + ' (' + n + ')';
+  }
+  const list = reports[reportKind] || [];
+  if (!list.length) {
+    box.append(el('div', 's', 'Nothing reported.'));
+    return;
+  }
+  for (const r of list) {
+    const item = el('div', 'rep');
+    const who = el('div', 'who');
+    who.append(el('span', null, when(r.created_at)));
+    if (reportKind === 'bugs') {
+      const from = r.username ? '@' + r.username : (r.account_email ? r.account_email : 'Not signed in');
+      who.append(el('b', null, from));
+      if (r.contact) who.append(el('span', null, 'Reply to: ' + r.contact));
+      if (r.account_email && r.username) who.append(el('span', null, r.account_email));
+      who.append(el('span', 'tag', [r.platform, r.app_version].filter(Boolean).join(' ') || 'unknown'));
+      if (r.page) who.append(el('span', 'tag', r.page));
+      if (r.source) who.append(el('span', 'tag', r.source));
+      item.append(who, el('div', 'msg', r.message || ''));
+    } else {
+      const by = r.reporter ? '@' + r.reporter : 'someone';
+      const about = r.reported ? '@' + r.reported : (r.club || 'a club');
+      who.append(el('b', null, by + ' reported ' + about));
+      if (r.club && reportKind === 'clubs') who.append(el('span', 'tag', r.club));
+      if (r.kind) who.append(el('span', 'tag', r.kind));
+      if (r.status) who.append(el('span', 'tag', r.status));
+      item.append(who, el('div', 'msg', r.reason || ''));
+      for (const m of r.evidence || []) {
+        item.append(el('div', 'ev', (m.from ? m.from + ': ' : '') + (m.text || '')));
+      }
+    }
+    box.append(item);
+  }
+}
+
+async function loadReports() {
+  const { data, error } = await db.rpc('admin_reports');
+  if (error) {
+    $('reports').replaceChildren(el('div', 'err', 'Reports: ' + error.message));
+    return;
+  }
+  reports = data;
+  showReports();
+}
+
+document.getElementById('rep-tabs').addEventListener('click', e => {
+  const k = e.target && e.target.dataset && e.target.dataset.k;
+  if (!k) return;
+  reportKind = k;
+  showReports();
+});
+
 function signedOut(message) {
   $('signin').hidden = false;
   $('dash').hidden = true;
@@ -165,6 +231,7 @@ async function load() {
   table('platforms', m.platforms);
   table('versions', m.versions);
   await loadDb();
+  await loadReports();
   $('foot').textContent = 'Counts only: a random install id, platform and version, once a day. ' +
     (m.first_ping ? 'Installs counted since ' + short(m.first_ping) + '. ' : 'No installs counted yet. ') +
     'Club activity and accounts reach back further. Updated ' + new Date(m.generated_at).toLocaleString() + '.';

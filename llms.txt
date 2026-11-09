@@ -1,0 +1,19 @@
+# SynKitab
+
+> SynKitab is a reader for your own books and documents, on Windows, Android, Linux and the web. It opens PDFs, EPUBs and 128 kinds of file as themselves, reads any book aloud with natural voices that run offline on the device, and keeps your place, highlights and notes in sync across devices. Friends, end-to-end encrypted messages and spoiler-free book clubs are built in. It is a reader, not an editor (apart from page tools for PDFs).
+
+## Pages
+
+- [Home](https://synkitab.com/): what SynKitab does, and downloads
+- [Formats](https://synkitab.com/formats.html): every file type it opens, by kind, with search
+- [FAQ](https://synkitab.com/faq.html): accounts, syncing, offline use, editing PDFs, clubs
+- [Linux](https://synkitab.com/linux.html): installing on Linux
+- [Web reader](https://reader.synkitab.com/): SynKitab in the browser
+- [Privacy policy](https://api.synkitab.com/privacy)
+
+## Facts
+
+- Price: free
+- Platforms: Windows 10 and 11 (Microsoft Store or installer), Android 7+, 64-bit Linux (AppImage, .deb), any modern browser
+- Read aloud: offline neural voices (Kokoro, Piper, Kitten, Supertonic, Pocket) or the device's own voices
+- Privacy: no account needed to read; the Vault and direct messages are end-to-end encrypted
