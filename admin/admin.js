@@ -124,6 +124,58 @@ async function loadDb() {
   ]);
 }
 
+// What installs did, in buckets (admin_usage(), 20261114000000_usage_detail.sql).
+const READ = ['None', 'Under 5 min', '5–15 min', '15–30 min', '30–60 min', 'An hour or more'];
+const FEATURES = {
+  tts: 'Read aloud', highlight: 'Highlights and notes', search: 'Find', drive: 'Google Drive',
+  vault: 'Vault', clubs: 'Clubs', chat: 'Chat', discover: 'Discover', catalog: 'Catalog',
+  arena: 'Arena', stats: 'Reading stats',
+};
+
+async function loadUsage() {
+  const box = $('u-kpis');
+  box.replaceChildren();
+  const { data: u, error } = await db.rpc('admin_usage');
+  if (error) {
+    box.append(el('div', 'err', 'Usage: ' + error.message));
+    return;
+  }
+  const card = (k, v, s) => {
+    const c = el('div', 'card');
+    c.append(el('div', 'k', k), el('div', 'v', String(v)), el('div', 's', s));
+    box.append(c);
+  };
+  const list = (id, items) => rows('u-' + id, items.length ? items : [['Nothing yet', '']]);
+  const byCount = obj => Object.entries(obj).sort((a, b) => b[1] - a[1]);
+  const n = u.reporting, f = u.funnel;
+
+  card('Reporting installs', n, u.since ? 'sent usage in 30 days; since ' + short(u.since) : 'no app has sent usage yet');
+  card('Readers', pct(u.readers, n), u.readers + ' read 5+ minutes on some day');
+  card('Signed in', pct(u.signed_in, n), u.signed_in + ' used an account');
+  card('Week one, then back', pct(f.back, f.installs), f.installs
+      ? f.back + ' of ' + f.installs + ' came back in days 7–13' : 'needs installs 13+ days old');
+
+  list('features', byCount(u.features).map(([k, v]) => [FEATURES[k] || k, v + ' · ' + pct(v, n)]));
+  list('formats', byCount(u.formats).map(([k, v]) => [k.toUpperCase(), v + ' · ' + pct(v, n)]));
+  const days = Object.values(u.read_minutes).reduce((a, b) => a + b, 0);
+  list('read', days ? READ.map((label, i) => {
+    const d = u.read_minutes[i] || 0;
+    return [label, d + ' · ' + pct(d, days)];
+  }) : []);
+  list('funnel', f.installs ? [
+    ['First seen', f.installs],
+    ['Opened a document', f.opened + ' · ' + pct(f.opened, f.installs)],
+    ['Read 5+ minutes in a day', f.read + ' · ' + pct(f.read, f.installs)],
+    ['Signed in', f.signed_in + ' · ' + pct(f.signed_in, f.installs)],
+    ['Came back in days 7–13', f.back + ' · ' + pct(f.back, f.installs)],
+  ] : []);
+  list('errors', Object.entries(u.errors_by_version)
+    .sort((a, b) => b[0].localeCompare(a[0], undefined, { numeric: true }))
+    .map(([v, [bad, all]]) => [v, bad + ' of ' + all + ' hit an error · ' + pct(all - bad, all) + ' clean']));
+  list('slow', Object.entries(u.slow_by_platform)
+    .map(([p, [slow, all]]) => [p, slow + ' of ' + all + ' reading days · ' + pct(slow, all)]));
+}
+
 function kpi2(k, v, s) {
   const c = el('div', 'card');
   c.append(el('div', 'k', k), el('div', 'v', String(v)), el('div', 's', s));
@@ -230,9 +282,11 @@ async function load() {
   bars('signups', m.signups_weekly, 'week');
   table('platforms', m.platforms);
   table('versions', m.versions);
+  await loadUsage();
   await loadDb();
   await loadReports();
-  $('foot').textContent = 'Counts only: a random install id, platform and version, once a day. ' +
+  $('foot').textContent = 'Counts only: a random install id, platform and version, once a day, plus that day\'s ' +
+    'usage in buckets (formats, features, reading time, errors, slow opens, signed in), kept 90 days. ' +
     (m.first_ping ? 'Installs counted since ' + short(m.first_ping) + '. ' : 'No installs counted yet. ') +
     'Club activity and accounts reach back further. Updated ' + new Date(m.generated_at).toLocaleString() + '.';
 }
