@@ -1,14 +1,14 @@
 {
-    "tag_name":  "v1.12.22",
-    "published_at":  "2026-11-26T16:45:02.1426323Z",
+    "tag_name":  "v1.13.0",
+    "published_at":  "2026-11-26T17:27:36.4187860Z",
     "assets":  [
                    {
                        "name":  "SynKitab-Setup.exe",
-                       "size":  27651427
+                       "size":  27653607
                    },
                    {
                        "name":  "SynKitab.apk",
-                       "size":  59636946
+                       "size":  59638330
                    },
                    {
                        "name":  "SynKitab-x86_64.AppImage",
